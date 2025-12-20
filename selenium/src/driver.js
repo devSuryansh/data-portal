@@ -74,21 +74,14 @@ async function buildDriver() {
     options.addArguments('--allow-running-insecure-content');
   }
 
-  /**
-   * Build the actual WebDriver instance.
-   * Selenium will launch a brand-new Chrome session here.
-   */
+  // Build the actual WebDriver instance.
+  // Selenium will launch a brand-new Chrome session here.
   const driver = await new Builder()
     .forBrowser('chrome')
     .setChromeOptions(options)
     .build();
 
-  /**
-   * Disable implicit waits and rely only on explicit waits.
-   *
-   * This avoids flakiness and makes wait logic obvious
-   * at each interaction point.
-   */
+  // Disable implicit waits and rely only on explicit waits.
   await driver.manage().setTimeouts({
     implicit: 0,
     pageLoad: 60000,
