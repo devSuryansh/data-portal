@@ -1,0 +1,2034 @@
+<body>
+  <div id="root">
+    <div class="screen-size-warning__container">
+      <svg
+        aria-hidden="true"
+        focusable="false"
+        data-prefix="fas"
+        data-icon="triangle-exclamation"
+        class="svg-inline--fa fa-triangle-exclamation screen-size-warning__icon"
+        role="img"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 512 512"
+        color="var(--pcdc-color__secondary)"
+      >
+        <path fill="currentColor"></path></svg
+      >To get the full Data Commons experience, please switch to a larger
+      screen.
+    </div>
+    <header>
+      <nav class="top-bar" aria-label="Top Navigation">
+        <div class="top-bar__items">
+          <div>
+            <a
+              class="top-bar-item"
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://commons.cri.uchicago.edu/pcdc/"
+              ><span class="top-bar-item__content body-typo"
+                >About PCDC<i
+                  class="g3-icon g3-icon--external-link"
+                ></i></span></a
+            ><a
+              class="top-bar-item"
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://commons.cri.uchicago.edu/sponsors/"
+              ><span class="top-bar-item__content body-typo"
+                >Our Sponsors<i
+                  class="g3-icon g3-icon--external-link"
+                ></i></span
+            ></a>
+          </div>
+          <div></div>
+        </div>
+        <div class="top-bar__menu-group">
+          <span class="top-bar-menu"
+            ><button data-menu-active="false" title="Profile" type="button">
+              <svg
+                aria-hidden="true"
+                focusable="false"
+                data-prefix="fas"
+                data-icon="circle-user"
+                class="svg-inline--fa fa-circle-user"
+                role="img"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 512 512"
+              >
+                <path fill="currentColor"></path>
+              </svg></button
+          ></span>
+        </div>
+      </nav>
+      <nav class="nav-bar" aria-label="Main Navigation">
+        <div class="nav-bar__nav--info">
+          <div class="nav-bar__logo">
+            <a href="/dev.html"
+              ><img class="nav-bar__logo-img" alt="Main logo"
+            /></a>
+          </div>
+        </div>
+        <div class="nav-bar__nav--items">
+          <div class="nav-bar__link nav-bar__link--right">
+            <a
+              class="body-typo nav-button--active nav-button"
+              href="/dev.html/DD"
+              ><div class="nav-button__icon">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 489.709 489.709"
+                  height="27px"
+                >
+                  <path></path>
+                </svg>
+              </div>
+              Dictionary</a
+            >
+          </div>
+          <div class="nav-bar__link nav-bar__link--right">
+            <a class="body-typo nav-button" href="/dev.html/explorer"
+              ><div class="nav-button__icon">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 512 512"
+                  height="27px"
+                >
+                  <path></path>
+                  <path></path>
+                </svg>
+              </div>
+              Exploration</a
+            >
+          </div>
+        </div>
+      </nav>
+    </header>
+    <main class="main">
+      <div class="dashboard">
+        <div class="dashboard__sidebar data-dictionary__sidebar">
+          <div>
+            <div class="data-dictionary__switch">
+              <span
+                class="data-dictionary__switch-button"
+                role="button"
+                tabindex="0"
+                aria-label="Graph view"
+                >Graph View</span
+              ><span
+                class="data-dictionary__switch-button data-dictionary__switch-button--active"
+                role="button"
+                tabindex="0"
+                aria-label="Dictionary view"
+                >Table View</span
+              >
+            </div>
+            <div class="data-dictionary-searcher">
+              <div class="auto-complete auto-complete--empty-suggestion-list">
+                <div class="auto-complete__input-wrapper">
+                  <div class="auto-complete-input">
+                    <form class="auto-complete-input__form">
+                      <input
+                        title="Search Input"
+                        class="auto-complete-input__input-box body"
+                        placeholder="Search in Dictionary"
+                        value=""
+                      />
+                    </form>
+                    <span role="button" tabindex="0" aria-label="Search"
+                      ><i
+                        class="g3-icon g3-icon--search auto-complete-input__icon"
+                      ></i
+                    ></span>
+                  </div>
+                </div>
+                <div></div>
+              </div>
+            </div>
+          </div>
+          <div class="data-dictionary__version-info-area">
+            <div class="data-dictionary__version-info-list">
+              <div class="data-dictionary__version-info">
+                <span>Portal Version:</span> 1.45.0
+              </div>
+              <div class="data-dictionary__version-info">
+                <span>Survival Curve Version:</span> 1.10.1
+              </div>
+              <div class="data-dictionary__version-info">
+                <span>Help:</span>
+                <a href="mailto:pcdc_help@lists.uchicago.edu"
+                  >pcdc_help@lists.uchicago.edu</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="dashboard__main data-dictionary__main">
+          <div
+            class="data-dictionary__graph data-dictionary__graph--hidden"
+          ></div>
+          <div class="data-dictionary__table">
+            <p>
+              Pediatric Cancer Data Commons Portal dictionary has 45 nodes and
+              604 properties
+            </p>
+            <div class="data-dictionary-category">
+              <div
+                class="data-dictionary-category__head"
+                style="border-left-color: rgb(5, 184, 238)"
+              >
+                <svg
+                  width="20"
+                  height="20"
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="data-dictionary-category__icon"
+                >
+                  <g fill-rule="nonzero" fill="none">
+                    <path fill="#05B8EE"></path>
+                    <path fill="#FFF"></path>
+                  </g></svg
+                ><span>Clinical</span
+                ><span class="data-dictionary-category__download_template"
+                  >Download Template</span
+                >
+              </div>
+              <div
+                class="data-dictionary-node"
+                role="button"
+                tabindex="0"
+                aria-label="Dictionary node"
+                style="border-left-color: rgb(5, 184, 238)"
+              >
+                <span class="data-dictionary-node__title"
+                  ><i
+                    class="g3-icon g3-icon--folder data-dictionary-node__file-icon"
+                  ></i
+                  >Adverse Event<i
+                    class="g3-icon g3-icon--chevron-right data-dictionary-node__toggle-icon"
+                  ></i></span
+                ><span class="data-dictionary-node__description"
+                  >Adverse Event</span
+                >
+                <div class="data-dictionary-node__download-group">
+                  <span class="data-dictionary-node__button-wrap"
+                    ><button
+                      type="button"
+                      class="data-dictionary-node__download-button g3-button g3-button--secondary"
+                      aria-haspopup="false"
+                    >
+                      JSON<i
+                        class="g3-icon g3-icon--sm g3-icon--download g3-button__icon g3-button__icon--right"
+                      ></i></button></span
+                  ><span class="data-dictionary-node__button-wrap"
+                    ><button
+                      type="button"
+                      class="data-dictionary-node__download-button g3-button g3-button--secondary"
+                      aria-haspopup="false"
+                    >
+                      TSV<i
+                        class="g3-icon g3-icon--sm g3-icon--download g3-button__icon g3-button__icon--right"
+                      ></i></button
+                  ></span>
+                </div>
+              </div>
+              <div
+                class="data-dictionary-node"
+                role="button"
+                tabindex="0"
+                aria-label="Dictionary node"
+                style="border-left-color: rgb(5, 184, 238)"
+              >
+                <span class="data-dictionary-node__title"
+                  ><i
+                    class="g3-icon g3-icon--folder data-dictionary-node__file-icon"
+                  ></i
+                  >Biopsy Surgical Procedure<i
+                    class="g3-icon g3-icon--chevron-right data-dictionary-node__toggle-icon"
+                  ></i></span
+                ><span class="data-dictionary-node__description"
+                  >Biopsy Surgical Procedure</span
+                >
+                <div class="data-dictionary-node__download-group">
+                  <span class="data-dictionary-node__button-wrap"
+                    ><button
+                      type="button"
+                      class="data-dictionary-node__download-button g3-button g3-button--secondary"
+                      aria-haspopup="false"
+                    >
+                      JSON<i
+                        class="g3-icon g3-icon--sm g3-icon--download g3-button__icon g3-button__icon--right"
+                      ></i></button></span
+                  ><span class="data-dictionary-node__button-wrap"
+                    ><button
+                      type="button"
+                      class="data-dictionary-node__download-button g3-button g3-button--secondary"
+                      aria-haspopup="false"
+                    >
+                      TSV<i
+                        class="g3-icon g3-icon--sm g3-icon--download g3-button__icon g3-button__icon--right"
+                      ></i></button
+                  ></span>
+                </div>
+              </div>
+              <div
+                class="data-dictionary-node"
+                role="button"
+                tabindex="0"
+                aria-label="Dictionary node"
+                style="border-left-color: rgb(5, 184, 238)"
+              >
+                <span class="data-dictionary-node__title"
+                  ><i
+                    class="g3-icon g3-icon--folder data-dictionary-node__file-icon"
+                  ></i
+                  >Biospecimen<i
+                    class="g3-icon g3-icon--chevron-right data-dictionary-node__toggle-icon"
+                  ></i></span
+                ><span class="data-dictionary-node__description"
+                  >Biospecimen</span
+                >
+                <div class="data-dictionary-node__download-group">
+                  <span class="data-dictionary-node__button-wrap"
+                    ><button
+                      type="button"
+                      class="data-dictionary-node__download-button g3-button g3-button--secondary"
+                      aria-haspopup="false"
+                    >
+                      JSON<i
+                        class="g3-icon g3-icon--sm g3-icon--download g3-button__icon g3-button__icon--right"
+                      ></i></button></span
+                  ><span class="data-dictionary-node__button-wrap"
+                    ><button
+                      type="button"
+                      class="data-dictionary-node__download-button g3-button g3-button--secondary"
+                      aria-haspopup="false"
+                    >
+                      TSV<i
+                        class="g3-icon g3-icon--sm g3-icon--download g3-button__icon g3-button__icon--right"
+                      ></i></button
+                  ></span>
+                </div>
+              </div>
+              <div
+                class="data-dictionary-node"
+                role="button"
+                tabindex="0"
+                aria-label="Dictionary node"
+                style="border-left-color: rgb(5, 184, 238)"
+              >
+                <span class="data-dictionary-node__title"
+                  ><i
+                    class="g3-icon g3-icon--folder data-dictionary-node__file-icon"
+                  ></i
+                  >Cellular Immunotherapy<i
+                    class="g3-icon g3-icon--chevron-right data-dictionary-node__toggle-icon"
+                  ></i></span
+                ><span class="data-dictionary-node__description"
+                  >Cellular Immunotherapy</span
+                >
+                <div class="data-dictionary-node__download-group">
+                  <span class="data-dictionary-node__button-wrap"
+                    ><button
+                      type="button"
+                      class="data-dictionary-node__download-button g3-button g3-button--secondary"
+                      aria-haspopup="false"
+                    >
+                      JSON<i
+                        class="g3-icon g3-icon--sm g3-icon--download g3-button__icon g3-button__icon--right"
+                      ></i></button></span
+                  ><span class="data-dictionary-node__button-wrap"
+                    ><button
+                      type="button"
+                      class="data-dictionary-node__download-button g3-button g3-button--secondary"
+                      aria-haspopup="false"
+                    >
+                      TSV<i
+                        class="g3-icon g3-icon--sm g3-icon--download g3-button__icon g3-button__icon--right"
+                      ></i></button
+                  ></span>
+                </div>
+              </div>
+              <div
+                class="data-dictionary-node"
+                role="button"
+                tabindex="0"
+                aria-label="Dictionary node"
+                style="border-left-color: rgb(5, 184, 238)"
+              >
+                <span class="data-dictionary-node__title"
+                  ><i
+                    class="g3-icon g3-icon--folder data-dictionary-node__file-icon"
+                  ></i
+                  >Concomitant Medication<i
+                    class="g3-icon g3-icon--chevron-right data-dictionary-node__toggle-icon"
+                  ></i></span
+                ><span class="data-dictionary-node__description"
+                  >Concomitant Medication</span
+                >
+                <div class="data-dictionary-node__download-group">
+                  <span class="data-dictionary-node__button-wrap"
+                    ><button
+                      type="button"
+                      class="data-dictionary-node__download-button g3-button g3-button--secondary"
+                      aria-haspopup="false"
+                    >
+                      JSON<i
+                        class="g3-icon g3-icon--sm g3-icon--download g3-button__icon g3-button__icon--right"
+                      ></i></button></span
+                  ><span class="data-dictionary-node__button-wrap"
+                    ><button
+                      type="button"
+                      class="data-dictionary-node__download-button g3-button g3-button--secondary"
+                      aria-haspopup="false"
+                    >
+                      TSV<i
+                        class="g3-icon g3-icon--sm g3-icon--download g3-button__icon g3-button__icon--right"
+                      ></i></button
+                  ></span>
+                </div>
+              </div>
+              <div
+                class="data-dictionary-node"
+                role="button"
+                tabindex="0"
+                aria-label="Dictionary node"
+                style="border-left-color: rgb(5, 184, 238)"
+              >
+                <span class="data-dictionary-node__title"
+                  ><i
+                    class="g3-icon g3-icon--folder data-dictionary-node__file-icon"
+                  ></i
+                  >Cytology<i
+                    class="g3-icon g3-icon--chevron-right data-dictionary-node__toggle-icon"
+                  ></i></span
+                ><span class="data-dictionary-node__description">Cytology</span>
+                <div class="data-dictionary-node__download-group">
+                  <span class="data-dictionary-node__button-wrap"
+                    ><button
+                      type="button"
+                      class="data-dictionary-node__download-button g3-button g3-button--secondary"
+                      aria-haspopup="false"
+                    >
+                      JSON<i
+                        class="g3-icon g3-icon--sm g3-icon--download g3-button__icon g3-button__icon--right"
+                      ></i></button></span
+                  ><span class="data-dictionary-node__button-wrap"
+                    ><button
+                      type="button"
+                      class="data-dictionary-node__download-button g3-button g3-button--secondary"
+                      aria-haspopup="false"
+                    >
+                      TSV<i
+                        class="g3-icon g3-icon--sm g3-icon--download g3-button__icon g3-button__icon--right"
+                      ></i></button
+                  ></span>
+                </div>
+              </div>
+              <div
+                class="data-dictionary-node"
+                role="button"
+                tabindex="0"
+                aria-label="Dictionary node"
+                style="border-left-color: rgb(5, 184, 238)"
+              >
+                <span class="data-dictionary-node__title"
+                  ><i
+                    class="g3-icon g3-icon--folder data-dictionary-node__file-icon"
+                  ></i
+                  >Disease Characteristics<i
+                    class="g3-icon g3-icon--chevron-right data-dictionary-node__toggle-icon"
+                  ></i></span
+                ><span class="data-dictionary-node__description"
+                  >Disease Characteristics</span
+                >
+                <div class="data-dictionary-node__download-group">
+                  <span class="data-dictionary-node__button-wrap"
+                    ><button
+                      type="button"
+                      class="data-dictionary-node__download-button g3-button g3-button--secondary"
+                      aria-haspopup="false"
+                    >
+                      JSON<i
+                        class="g3-icon g3-icon--sm g3-icon--download g3-button__icon g3-button__icon--right"
+                      ></i></button></span
+                  ><span class="data-dictionary-node__button-wrap"
+                    ><button
+                      type="button"
+                      class="data-dictionary-node__download-button g3-button g3-button--secondary"
+                      aria-haspopup="false"
+                    >
+                      TSV<i
+                        class="g3-icon g3-icon--sm g3-icon--download g3-button__icon g3-button__icon--right"
+                      ></i></button
+                  ></span>
+                </div>
+              </div>
+              <div
+                class="data-dictionary-node"
+                role="button"
+                tabindex="0"
+                aria-label="Dictionary node"
+                style="border-left-color: rgb(5, 184, 238)"
+              >
+                <span class="data-dictionary-node__title"
+                  ><i
+                    class="g3-icon g3-icon--folder data-dictionary-node__file-icon"
+                  ></i
+                  >Family Medical History<i
+                    class="g3-icon g3-icon--chevron-right data-dictionary-node__toggle-icon"
+                  ></i></span
+                ><span class="data-dictionary-node__description"
+                  >Family Medical History</span
+                >
+                <div class="data-dictionary-node__download-group">
+                  <span class="data-dictionary-node__button-wrap"
+                    ><button
+                      type="button"
+                      class="data-dictionary-node__download-button g3-button g3-button--secondary"
+                      aria-haspopup="false"
+                    >
+                      JSON<i
+                        class="g3-icon g3-icon--sm g3-icon--download g3-button__icon g3-button__icon--right"
+                      ></i></button></span
+                  ><span class="data-dictionary-node__button-wrap"
+                    ><button
+                      type="button"
+                      class="data-dictionary-node__download-button g3-button g3-button--secondary"
+                      aria-haspopup="false"
+                    >
+                      TSV<i
+                        class="g3-icon g3-icon--sm g3-icon--download g3-button__icon g3-button__icon--right"
+                      ></i></button
+                  ></span>
+                </div>
+              </div>
+              <div
+                class="data-dictionary-node"
+                role="button"
+                tabindex="0"
+                aria-label="Dictionary node"
+                style="border-left-color: rgb(5, 184, 238)"
+              >
+                <span class="data-dictionary-node__title"
+                  ><i
+                    class="g3-icon g3-icon--folder data-dictionary-node__file-icon"
+                  ></i
+                  >Function Tests<i
+                    class="g3-icon g3-icon--chevron-right data-dictionary-node__toggle-icon"
+                  ></i></span
+                ><span class="data-dictionary-node__description"
+                  >Patient Tests</span
+                >
+                <div class="data-dictionary-node__download-group">
+                  <span class="data-dictionary-node__button-wrap"
+                    ><button
+                      type="button"
+                      class="data-dictionary-node__download-button g3-button g3-button--secondary"
+                      aria-haspopup="false"
+                    >
+                      JSON<i
+                        class="g3-icon g3-icon--sm g3-icon--download g3-button__icon g3-button__icon--right"
+                      ></i></button></span
+                  ><span class="data-dictionary-node__button-wrap"
+                    ><button
+                      type="button"
+                      class="data-dictionary-node__download-button g3-button g3-button--secondary"
+                      aria-haspopup="false"
+                    >
+                      TSV<i
+                        class="g3-icon g3-icon--sm g3-icon--download g3-button__icon g3-button__icon--right"
+                      ></i></button
+                  ></span>
+                </div>
+              </div>
+              <div
+                class="data-dictionary-node"
+                role="button"
+                tabindex="0"
+                aria-label="Dictionary node"
+                style="border-left-color: rgb(5, 184, 238)"
+              >
+                <span class="data-dictionary-node__title"
+                  ><i
+                    class="g3-icon g3-icon--folder data-dictionary-node__file-icon"
+                  ></i
+                  >Growing Teratoma Syndrome<i
+                    class="g3-icon g3-icon--chevron-right data-dictionary-node__toggle-icon"
+                  ></i></span
+                ><span class="data-dictionary-node__description"
+                  >Growing Teratoma Syndrome</span
+                >
+                <div class="data-dictionary-node__download-group">
+                  <span class="data-dictionary-node__button-wrap"
+                    ><button
+                      type="button"
+                      class="data-dictionary-node__download-button g3-button g3-button--secondary"
+                      aria-haspopup="false"
+                    >
+                      JSON<i
+                        class="g3-icon g3-icon--sm g3-icon--download g3-button__icon g3-button__icon--right"
+                      ></i></button></span
+                  ><span class="data-dictionary-node__button-wrap"
+                    ><button
+                      type="button"
+                      class="data-dictionary-node__download-button g3-button g3-button--secondary"
+                      aria-haspopup="false"
+                    >
+                      TSV<i
+                        class="g3-icon g3-icon--sm g3-icon--download g3-button__icon g3-button__icon--right"
+                      ></i></button
+                  ></span>
+                </div>
+              </div>
+              <div
+                class="data-dictionary-node"
+                role="button"
+                tabindex="0"
+                aria-label="Dictionary node"
+                style="border-left-color: rgb(5, 184, 238)"
+              >
+                <span class="data-dictionary-node__title"
+                  ><i
+                    class="g3-icon g3-icon--folder data-dictionary-node__file-icon"
+                  ></i
+                  >Histology<i
+                    class="g3-icon g3-icon--chevron-right data-dictionary-node__toggle-icon"
+                  ></i></span
+                ><span class="data-dictionary-node__description"
+                  >Histology</span
+                >
+                <div class="data-dictionary-node__download-group">
+                  <span class="data-dictionary-node__button-wrap"
+                    ><button
+                      type="button"
+                      class="data-dictionary-node__download-button g3-button g3-button--secondary"
+                      aria-haspopup="false"
+                    >
+                      JSON<i
+                        class="g3-icon g3-icon--sm g3-icon--download g3-button__icon g3-button__icon--right"
+                      ></i></button></span
+                  ><span class="data-dictionary-node__button-wrap"
+                    ><button
+                      type="button"
+                      class="data-dictionary-node__download-button g3-button g3-button--secondary"
+                      aria-haspopup="false"
+                    >
+                      TSV<i
+                        class="g3-icon g3-icon--sm g3-icon--download g3-button__icon g3-button__icon--right"
+                      ></i></button
+                  ></span>
+                </div>
+              </div>
+              <div
+                class="data-dictionary-node"
+                role="button"
+                tabindex="0"
+                aria-label="Dictionary node"
+                style="border-left-color: rgb(5, 184, 238)"
+              >
+                <span class="data-dictionary-node__title"
+                  ><i
+                    class="g3-icon g3-icon--folder data-dictionary-node__file-icon"
+                  ></i
+                  >Imaging<i
+                    class="g3-icon g3-icon--chevron-right data-dictionary-node__toggle-icon"
+                  ></i></span
+                ><span class="data-dictionary-node__description">Imaging</span>
+                <div class="data-dictionary-node__download-group">
+                  <span class="data-dictionary-node__button-wrap"
+                    ><button
+                      type="button"
+                      class="data-dictionary-node__download-button g3-button g3-button--secondary"
+                      aria-haspopup="false"
+                    >
+                      JSON<i
+                        class="g3-icon g3-icon--sm g3-icon--download g3-button__icon g3-button__icon--right"
+                      ></i></button></span
+                  ><span class="data-dictionary-node__button-wrap"
+                    ><button
+                      type="button"
+                      class="data-dictionary-node__download-button g3-button g3-button--secondary"
+                      aria-haspopup="false"
+                    >
+                      TSV<i
+                        class="g3-icon g3-icon--sm g3-icon--download g3-button__icon g3-button__icon--right"
+                      ></i></button
+                  ></span>
+                </div>
+              </div>
+              <div
+                class="data-dictionary-node"
+                role="button"
+                tabindex="0"
+                aria-label="Dictionary node"
+                style="border-left-color: rgb(5, 184, 238)"
+              >
+                <span class="data-dictionary-node__title"
+                  ><i
+                    class="g3-icon g3-icon--folder data-dictionary-node__file-icon"
+                  ></i
+                  >Immunohistochemistry<i
+                    class="g3-icon g3-icon--chevron-right data-dictionary-node__toggle-icon"
+                  ></i></span
+                ><span class="data-dictionary-node__description"
+                  >Immunohistochemistry</span
+                >
+                <div class="data-dictionary-node__download-group">
+                  <span class="data-dictionary-node__button-wrap"
+                    ><button
+                      type="button"
+                      class="data-dictionary-node__download-button g3-button g3-button--secondary"
+                      aria-haspopup="false"
+                    >
+                      JSON<i
+                        class="g3-icon g3-icon--sm g3-icon--download g3-button__icon g3-button__icon--right"
+                      ></i></button></span
+                  ><span class="data-dictionary-node__button-wrap"
+                    ><button
+                      type="button"
+                      class="data-dictionary-node__download-button g3-button g3-button--secondary"
+                      aria-haspopup="false"
+                    >
+                      TSV<i
+                        class="g3-icon g3-icon--sm g3-icon--download g3-button__icon g3-button__icon--right"
+                      ></i></button
+                  ></span>
+                </div>
+              </div>
+              <div
+                class="data-dictionary-node"
+                role="button"
+                tabindex="0"
+                aria-label="Dictionary node"
+                style="border-left-color: rgb(5, 184, 238)"
+              >
+                <span class="data-dictionary-node__title"
+                  ><i
+                    class="g3-icon g3-icon--folder data-dictionary-node__file-icon"
+                  ></i
+                  >Labs<i
+                    class="g3-icon g3-icon--chevron-right data-dictionary-node__toggle-icon"
+                  ></i></span
+                ><span class="data-dictionary-node__description">Labs</span>
+                <div class="data-dictionary-node__download-group">
+                  <span class="data-dictionary-node__button-wrap"
+                    ><button
+                      type="button"
+                      class="data-dictionary-node__download-button g3-button g3-button--secondary"
+                      aria-haspopup="false"
+                    >
+                      JSON<i
+                        class="g3-icon g3-icon--sm g3-icon--download g3-button__icon g3-button__icon--right"
+                      ></i></button></span
+                  ><span class="data-dictionary-node__button-wrap"
+                    ><button
+                      type="button"
+                      class="data-dictionary-node__download-button g3-button g3-button--secondary"
+                      aria-haspopup="false"
+                    >
+                      TSV<i
+                        class="g3-icon g3-icon--sm g3-icon--download g3-button__icon g3-button__icon--right"
+                      ></i></button
+                  ></span>
+                </div>
+              </div>
+              <div
+                class="data-dictionary-node"
+                role="button"
+                tabindex="0"
+                aria-label="Dictionary node"
+                style="border-left-color: rgb(5, 184, 238)"
+              >
+                <span class="data-dictionary-node__title"
+                  ><i
+                    class="g3-icon g3-icon--folder data-dictionary-node__file-icon"
+                  ></i
+                  >Late Effects<i
+                    class="g3-icon g3-icon--chevron-right data-dictionary-node__toggle-icon"
+                  ></i></span
+                ><span class="data-dictionary-node__description"
+                  >Late Effects</span
+                >
+                <div class="data-dictionary-node__download-group">
+                  <span class="data-dictionary-node__button-wrap"
+                    ><button
+                      type="button"
+                      class="data-dictionary-node__download-button g3-button g3-button--secondary"
+                      aria-haspopup="false"
+                    >
+                      JSON<i
+                        class="g3-icon g3-icon--sm g3-icon--download g3-button__icon g3-button__icon--right"
+                      ></i></button></span
+                  ><span class="data-dictionary-node__button-wrap"
+                    ><button
+                      type="button"
+                      class="data-dictionary-node__download-button g3-button g3-button--secondary"
+                      aria-haspopup="false"
+                    >
+                      TSV<i
+                        class="g3-icon g3-icon--sm g3-icon--download g3-button__icon g3-button__icon--right"
+                      ></i></button
+                  ></span>
+                </div>
+              </div>
+              <div
+                class="data-dictionary-node"
+                role="button"
+                tabindex="0"
+                aria-label="Dictionary node"
+                style="border-left-color: rgb(5, 184, 238)"
+              >
+                <span class="data-dictionary-node__title"
+                  ><i
+                    class="g3-icon g3-icon--folder data-dictionary-node__file-icon"
+                  ></i
+                  >Lesion Characteristics<i
+                    class="g3-icon g3-icon--chevron-right data-dictionary-node__toggle-icon"
+                  ></i></span
+                ><span class="data-dictionary-node__description"
+                  >Lesion Characteristics</span
+                >
+                <div class="data-dictionary-node__download-group">
+                  <span class="data-dictionary-node__button-wrap"
+                    ><button
+                      type="button"
+                      class="data-dictionary-node__download-button g3-button g3-button--secondary"
+                      aria-haspopup="false"
+                    >
+                      JSON<i
+                        class="g3-icon g3-icon--sm g3-icon--download g3-button__icon g3-button__icon--right"
+                      ></i></button></span
+                  ><span class="data-dictionary-node__button-wrap"
+                    ><button
+                      type="button"
+                      class="data-dictionary-node__download-button g3-button g3-button--secondary"
+                      aria-haspopup="false"
+                    >
+                      TSV<i
+                        class="g3-icon g3-icon--sm g3-icon--download g3-button__icon g3-button__icon--right"
+                      ></i></button
+                  ></span>
+                </div>
+              </div>
+              <div
+                class="data-dictionary-node"
+                role="button"
+                tabindex="0"
+                aria-label="Dictionary node"
+                style="border-left-color: rgb(5, 184, 238)"
+              >
+                <span class="data-dictionary-node__title"
+                  ><i
+                    class="g3-icon g3-icon--folder data-dictionary-node__file-icon"
+                  ></i
+                  >Medical History<i
+                    class="g3-icon g3-icon--chevron-right data-dictionary-node__toggle-icon"
+                  ></i></span
+                ><span class="data-dictionary-node__description"
+                  >Medical History</span
+                >
+                <div class="data-dictionary-node__download-group">
+                  <span class="data-dictionary-node__button-wrap"
+                    ><button
+                      type="button"
+                      class="data-dictionary-node__download-button g3-button g3-button--secondary"
+                      aria-haspopup="false"
+                    >
+                      JSON<i
+                        class="g3-icon g3-icon--sm g3-icon--download g3-button__icon g3-button__icon--right"
+                      ></i></button></span
+                  ><span class="data-dictionary-node__button-wrap"
+                    ><button
+                      type="button"
+                      class="data-dictionary-node__download-button g3-button g3-button--secondary"
+                      aria-haspopup="false"
+                    >
+                      TSV<i
+                        class="g3-icon g3-icon--sm g3-icon--download g3-button__icon g3-button__icon--right"
+                      ></i></button
+                  ></span>
+                </div>
+              </div>
+              <div
+                class="data-dictionary-node"
+                role="button"
+                tabindex="0"
+                aria-label="Dictionary node"
+                style="border-left-color: rgb(5, 184, 238)"
+              >
+                <span class="data-dictionary-node__title"
+                  ><i
+                    class="g3-icon g3-icon--folder data-dictionary-node__file-icon"
+                  ></i
+                  >Minimal Residual Disease<i
+                    class="g3-icon g3-icon--chevron-right data-dictionary-node__toggle-icon"
+                  ></i></span
+                ><span class="data-dictionary-node__description"
+                  >Minimal Residual Disease</span
+                >
+                <div class="data-dictionary-node__download-group">
+                  <span class="data-dictionary-node__button-wrap"
+                    ><button
+                      type="button"
+                      class="data-dictionary-node__download-button g3-button g3-button--secondary"
+                      aria-haspopup="false"
+                    >
+                      JSON<i
+                        class="g3-icon g3-icon--sm g3-icon--download g3-button__icon g3-button__icon--right"
+                      ></i></button></span
+                  ><span class="data-dictionary-node__button-wrap"
+                    ><button
+                      type="button"
+                      class="data-dictionary-node__download-button g3-button g3-button--secondary"
+                      aria-haspopup="false"
+                    >
+                      TSV<i
+                        class="g3-icon g3-icon--sm g3-icon--download g3-button__icon g3-button__icon--right"
+                      ></i></button
+                  ></span>
+                </div>
+              </div>
+              <div
+                class="data-dictionary-node"
+                role="button"
+                tabindex="0"
+                aria-label="Dictionary node"
+                style="border-left-color: rgb(5, 184, 238)"
+              >
+                <span class="data-dictionary-node__title"
+                  ><i
+                    class="g3-icon g3-icon--folder data-dictionary-node__file-icon"
+                  ></i
+                  >Molecular Analysis<i
+                    class="g3-icon g3-icon--chevron-right data-dictionary-node__toggle-icon"
+                  ></i></span
+                ><span class="data-dictionary-node__description"
+                  >Molecular Analysis</span
+                >
+                <div class="data-dictionary-node__download-group">
+                  <span class="data-dictionary-node__button-wrap"
+                    ><button
+                      type="button"
+                      class="data-dictionary-node__download-button g3-button g3-button--secondary"
+                      aria-haspopup="false"
+                    >
+                      JSON<i
+                        class="g3-icon g3-icon--sm g3-icon--download g3-button__icon g3-button__icon--right"
+                      ></i></button></span
+                  ><span class="data-dictionary-node__button-wrap"
+                    ><button
+                      type="button"
+                      class="data-dictionary-node__download-button g3-button g3-button--secondary"
+                      aria-haspopup="false"
+                    >
+                      TSV<i
+                        class="g3-icon g3-icon--sm g3-icon--download g3-button__icon g3-button__icon--right"
+                      ></i></button
+                  ></span>
+                </div>
+              </div>
+              <div
+                class="data-dictionary-node"
+                role="button"
+                tabindex="0"
+                aria-label="Dictionary node"
+                style="border-left-color: rgb(5, 184, 238)"
+              >
+                <span class="data-dictionary-node__title"
+                  ><i
+                    class="g3-icon g3-icon--folder data-dictionary-node__file-icon"
+                  ></i
+                  >Myeloid Sarcoma Involvement<i
+                    class="g3-icon g3-icon--chevron-right data-dictionary-node__toggle-icon"
+                  ></i></span
+                ><span class="data-dictionary-node__description"
+                  >Myeloid Sarcoma Involvement</span
+                >
+                <div class="data-dictionary-node__download-group">
+                  <span class="data-dictionary-node__button-wrap"
+                    ><button
+                      type="button"
+                      class="data-dictionary-node__download-button g3-button g3-button--secondary"
+                      aria-haspopup="false"
+                    >
+                      JSON<i
+                        class="g3-icon g3-icon--sm g3-icon--download g3-button__icon g3-button__icon--right"
+                      ></i></button></span
+                  ><span class="data-dictionary-node__button-wrap"
+                    ><button
+                      type="button"
+                      class="data-dictionary-node__download-button g3-button g3-button--secondary"
+                      aria-haspopup="false"
+                    >
+                      TSV<i
+                        class="g3-icon g3-icon--sm g3-icon--download g3-button__icon g3-button__icon--right"
+                      ></i></button
+                  ></span>
+                </div>
+              </div>
+              <div
+                class="data-dictionary-node"
+                role="button"
+                tabindex="0"
+                aria-label="Dictionary node"
+                style="border-left-color: rgb(5, 184, 238)"
+              >
+                <span class="data-dictionary-node__title"
+                  ><i
+                    class="g3-icon g3-icon--folder data-dictionary-node__file-icon"
+                  ></i
+                  >Non-Protocol Therapy<i
+                    class="g3-icon g3-icon--chevron-right data-dictionary-node__toggle-icon"
+                  ></i></span
+                ><span class="data-dictionary-node__description"
+                  >Non-Protocol Therapy</span
+                >
+                <div class="data-dictionary-node__download-group">
+                  <span class="data-dictionary-node__button-wrap"
+                    ><button
+                      type="button"
+                      class="data-dictionary-node__download-button g3-button g3-button--secondary"
+                      aria-haspopup="false"
+                    >
+                      JSON<i
+                        class="g3-icon g3-icon--sm g3-icon--download g3-button__icon g3-button__icon--right"
+                      ></i></button></span
+                  ><span class="data-dictionary-node__button-wrap"
+                    ><button
+                      type="button"
+                      class="data-dictionary-node__download-button g3-button g3-button--secondary"
+                      aria-haspopup="false"
+                    >
+                      TSV<i
+                        class="g3-icon g3-icon--sm g3-icon--download g3-button__icon g3-button__icon--right"
+                      ></i></button
+                  ></span>
+                </div>
+              </div>
+              <div
+                class="data-dictionary-node"
+                role="button"
+                tabindex="0"
+                aria-label="Dictionary node"
+                style="border-left-color: rgb(5, 184, 238)"
+              >
+                <span class="data-dictionary-node__title"
+                  ><i
+                    class="g3-icon g3-icon--folder data-dictionary-node__file-icon"
+                  ></i
+                  >Off Protocol Therapy Study<i
+                    class="g3-icon g3-icon--chevron-right data-dictionary-node__toggle-icon"
+                  ></i></span
+                ><span class="data-dictionary-node__description"
+                  >Off Protocol Therapy Study</span
+                >
+                <div class="data-dictionary-node__download-group">
+                  <span class="data-dictionary-node__button-wrap"
+                    ><button
+                      type="button"
+                      class="data-dictionary-node__download-button g3-button g3-button--secondary"
+                      aria-haspopup="false"
+                    >
+                      JSON<i
+                        class="g3-icon g3-icon--sm g3-icon--download g3-button__icon g3-button__icon--right"
+                      ></i></button></span
+                  ><span class="data-dictionary-node__button-wrap"
+                    ><button
+                      type="button"
+                      class="data-dictionary-node__download-button g3-button g3-button--secondary"
+                      aria-haspopup="false"
+                    >
+                      TSV<i
+                        class="g3-icon g3-icon--sm g3-icon--download g3-button__icon g3-button__icon--right"
+                      ></i></button
+                  ></span>
+                </div>
+              </div>
+              <div
+                class="data-dictionary-node"
+                role="button"
+                tabindex="0"
+                aria-label="Dictionary node"
+                style="border-left-color: rgb(5, 184, 238)"
+              >
+                <span class="data-dictionary-node__title"
+                  ><i
+                    class="g3-icon g3-icon--folder data-dictionary-node__file-icon"
+                  ></i
+                  >Protocol Treatment Modification<i
+                    class="g3-icon g3-icon--chevron-right data-dictionary-node__toggle-icon"
+                  ></i></span
+                ><span class="data-dictionary-node__description"
+                  >Protocol Treatment Modification</span
+                >
+                <div class="data-dictionary-node__download-group">
+                  <span class="data-dictionary-node__button-wrap"
+                    ><button
+                      type="button"
+                      class="data-dictionary-node__download-button g3-button g3-button--secondary"
+                      aria-haspopup="false"
+                    >
+                      JSON<i
+                        class="g3-icon g3-icon--sm g3-icon--download g3-button__icon g3-button__icon--right"
+                      ></i></button></span
+                  ><span class="data-dictionary-node__button-wrap"
+                    ><button
+                      type="button"
+                      class="data-dictionary-node__download-button g3-button g3-button--secondary"
+                      aria-haspopup="false"
+                    >
+                      TSV<i
+                        class="g3-icon g3-icon--sm g3-icon--download g3-button__icon g3-button__icon--right"
+                      ></i></button
+                  ></span>
+                </div>
+              </div>
+              <div
+                class="data-dictionary-node"
+                role="button"
+                tabindex="0"
+                aria-label="Dictionary node"
+                style="border-left-color: rgb(5, 184, 238)"
+              >
+                <span class="data-dictionary-node__title"
+                  ><i
+                    class="g3-icon g3-icon--folder data-dictionary-node__file-icon"
+                  ></i
+                  >Radiation Therapy<i
+                    class="g3-icon g3-icon--chevron-right data-dictionary-node__toggle-icon"
+                  ></i></span
+                ><span class="data-dictionary-node__description"
+                  >Radiation Therapy</span
+                >
+                <div class="data-dictionary-node__download-group">
+                  <span class="data-dictionary-node__button-wrap"
+                    ><button
+                      type="button"
+                      class="data-dictionary-node__download-button g3-button g3-button--secondary"
+                      aria-haspopup="false"
+                    >
+                      JSON<i
+                        class="g3-icon g3-icon--sm g3-icon--download g3-button__icon g3-button__icon--right"
+                      ></i></button></span
+                  ><span class="data-dictionary-node__button-wrap"
+                    ><button
+                      type="button"
+                      class="data-dictionary-node__download-button g3-button g3-button--secondary"
+                      aria-haspopup="false"
+                    >
+                      TSV<i
+                        class="g3-icon g3-icon--sm g3-icon--download g3-button__icon g3-button__icon--right"
+                      ></i></button
+                  ></span>
+                </div>
+              </div>
+              <div
+                class="data-dictionary-node"
+                role="button"
+                tabindex="0"
+                aria-label="Dictionary node"
+                style="border-left-color: rgb(5, 184, 238)"
+              >
+                <span class="data-dictionary-node__title"
+                  ><i
+                    class="g3-icon g3-icon--folder data-dictionary-node__file-icon"
+                  ></i
+                  >Secondary Malignant Neoplasm<i
+                    class="g3-icon g3-icon--chevron-right data-dictionary-node__toggle-icon"
+                  ></i></span
+                ><span class="data-dictionary-node__description"
+                  >Secondary Malignant Neoplasm</span
+                >
+                <div class="data-dictionary-node__download-group">
+                  <span class="data-dictionary-node__button-wrap"
+                    ><button
+                      type="button"
+                      class="data-dictionary-node__download-button g3-button g3-button--secondary"
+                      aria-haspopup="false"
+                    >
+                      JSON<i
+                        class="g3-icon g3-icon--sm g3-icon--download g3-button__icon g3-button__icon--right"
+                      ></i></button></span
+                  ><span class="data-dictionary-node__button-wrap"
+                    ><button
+                      type="button"
+                      class="data-dictionary-node__download-button g3-button g3-button--secondary"
+                      aria-haspopup="false"
+                    >
+                      TSV<i
+                        class="g3-icon g3-icon--sm g3-icon--download g3-button__icon g3-button__icon--right"
+                      ></i></button
+                  ></span>
+                </div>
+              </div>
+              <div
+                class="data-dictionary-node"
+                role="button"
+                tabindex="0"
+                aria-label="Dictionary node"
+                style="border-left-color: rgb(5, 184, 238)"
+              >
+                <span class="data-dictionary-node__title"
+                  ><i
+                    class="g3-icon g3-icon--folder data-dictionary-node__file-icon"
+                  ></i
+                  >Staging<i
+                    class="g3-icon g3-icon--chevron-right data-dictionary-node__toggle-icon"
+                  ></i></span
+                ><span class="data-dictionary-node__description">Staging</span>
+                <div class="data-dictionary-node__download-group">
+                  <span class="data-dictionary-node__button-wrap"
+                    ><button
+                      type="button"
+                      class="data-dictionary-node__download-button g3-button g3-button--secondary"
+                      aria-haspopup="false"
+                    >
+                      JSON<i
+                        class="g3-icon g3-icon--sm g3-icon--download g3-button__icon g3-button__icon--right"
+                      ></i></button></span
+                  ><span class="data-dictionary-node__button-wrap"
+                    ><button
+                      type="button"
+                      class="data-dictionary-node__download-button g3-button g3-button--secondary"
+                      aria-haspopup="false"
+                    >
+                      TSV<i
+                        class="g3-icon g3-icon--sm g3-icon--download g3-button__icon g3-button__icon--right"
+                      ></i></button
+                  ></span>
+                </div>
+              </div>
+              <div
+                class="data-dictionary-node"
+                role="button"
+                tabindex="0"
+                aria-label="Dictionary node"
+                style="border-left-color: rgb(5, 184, 238)"
+              >
+                <span class="data-dictionary-node__title"
+                  ><i
+                    class="g3-icon g3-icon--folder data-dictionary-node__file-icon"
+                  ></i
+                  >Stem Cell Transplant<i
+                    class="g3-icon g3-icon--chevron-right data-dictionary-node__toggle-icon"
+                  ></i></span
+                ><span class="data-dictionary-node__description"
+                  >Stem Cell Transplant</span
+                >
+                <div class="data-dictionary-node__download-group">
+                  <span class="data-dictionary-node__button-wrap"
+                    ><button
+                      type="button"
+                      class="data-dictionary-node__download-button g3-button g3-button--secondary"
+                      aria-haspopup="false"
+                    >
+                      JSON<i
+                        class="g3-icon g3-icon--sm g3-icon--download g3-button__icon g3-button__icon--right"
+                      ></i></button></span
+                  ><span class="data-dictionary-node__button-wrap"
+                    ><button
+                      type="button"
+                      class="data-dictionary-node__download-button g3-button g3-button--secondary"
+                      aria-haspopup="false"
+                    >
+                      TSV<i
+                        class="g3-icon g3-icon--sm g3-icon--download g3-button__icon g3-button__icon--right"
+                      ></i></button
+                  ></span>
+                </div>
+              </div>
+              <div
+                class="data-dictionary-node"
+                role="button"
+                tabindex="0"
+                aria-label="Dictionary node"
+                style="border-left-color: rgb(5, 184, 238)"
+              >
+                <span class="data-dictionary-node__title"
+                  ><i
+                    class="g3-icon g3-icon--folder data-dictionary-node__file-icon"
+                  ></i
+                  >Subject Response<i
+                    class="g3-icon g3-icon--chevron-right data-dictionary-node__toggle-icon"
+                  ></i></span
+                ><span class="data-dictionary-node__description"
+                  >Subject Response</span
+                >
+                <div class="data-dictionary-node__download-group">
+                  <span class="data-dictionary-node__button-wrap"
+                    ><button
+                      type="button"
+                      class="data-dictionary-node__download-button g3-button g3-button--secondary"
+                      aria-haspopup="false"
+                    >
+                      JSON<i
+                        class="g3-icon g3-icon--sm g3-icon--download g3-button__icon g3-button__icon--right"
+                      ></i></button></span
+                  ><span class="data-dictionary-node__button-wrap"
+                    ><button
+                      type="button"
+                      class="data-dictionary-node__download-button g3-button g3-button--secondary"
+                      aria-haspopup="false"
+                    >
+                      TSV<i
+                        class="g3-icon g3-icon--sm g3-icon--download g3-button__icon g3-button__icon--right"
+                      ></i></button
+                  ></span>
+                </div>
+              </div>
+              <div
+                class="data-dictionary-node"
+                role="button"
+                tabindex="0"
+                aria-label="Dictionary node"
+                style="border-left-color: rgb(5, 184, 238)"
+              >
+                <span class="data-dictionary-node__title"
+                  ><i
+                    class="g3-icon g3-icon--folder data-dictionary-node__file-icon"
+                  ></i
+                  >Survival Characteristic<i
+                    class="g3-icon g3-icon--chevron-right data-dictionary-node__toggle-icon"
+                  ></i></span
+                ><span class="data-dictionary-node__description"
+                  >Survival Characteristic</span
+                >
+                <div class="data-dictionary-node__download-group">
+                  <span class="data-dictionary-node__button-wrap"
+                    ><button
+                      type="button"
+                      class="data-dictionary-node__download-button g3-button g3-button--secondary"
+                      aria-haspopup="false"
+                    >
+                      JSON<i
+                        class="g3-icon g3-icon--sm g3-icon--download g3-button__icon g3-button__icon--right"
+                      ></i></button></span
+                  ><span class="data-dictionary-node__button-wrap"
+                    ><button
+                      type="button"
+                      class="data-dictionary-node__download-button g3-button g3-button--secondary"
+                      aria-haspopup="false"
+                    >
+                      TSV<i
+                        class="g3-icon g3-icon--sm g3-icon--download g3-button__icon g3-button__icon--right"
+                      ></i></button
+                  ></span>
+                </div>
+              </div>
+              <div
+                class="data-dictionary-node"
+                role="button"
+                tabindex="0"
+                aria-label="Dictionary node"
+                style="border-left-color: rgb(5, 184, 238)"
+              >
+                <span class="data-dictionary-node__title"
+                  ><i
+                    class="g3-icon g3-icon--folder data-dictionary-node__file-icon"
+                  ></i
+                  >Timing<i
+                    class="g3-icon g3-icon--chevron-right data-dictionary-node__toggle-icon"
+                  ></i></span
+                ><span class="data-dictionary-node__description">Timing</span>
+                <div class="data-dictionary-node__download-group">
+                  <span class="data-dictionary-node__button-wrap"
+                    ><button
+                      type="button"
+                      class="data-dictionary-node__download-button g3-button g3-button--secondary"
+                      aria-haspopup="false"
+                    >
+                      JSON<i
+                        class="g3-icon g3-icon--sm g3-icon--download g3-button__icon g3-button__icon--right"
+                      ></i></button></span
+                  ><span class="data-dictionary-node__button-wrap"
+                    ><button
+                      type="button"
+                      class="data-dictionary-node__download-button g3-button g3-button--secondary"
+                      aria-haspopup="false"
+                    >
+                      TSV<i
+                        class="g3-icon g3-icon--sm g3-icon--download g3-button__icon g3-button__icon--right"
+                      ></i></button
+                  ></span>
+                </div>
+              </div>
+              <div
+                class="data-dictionary-node"
+                role="button"
+                tabindex="0"
+                aria-label="Dictionary node"
+                style="border-left-color: rgb(5, 184, 238)"
+              >
+                <span class="data-dictionary-node__title"
+                  ><i
+                    class="g3-icon g3-icon--folder data-dictionary-node__file-icon"
+                  ></i
+                  >Total Dose<i
+                    class="g3-icon g3-icon--chevron-right data-dictionary-node__toggle-icon"
+                  ></i></span
+                ><span class="data-dictionary-node__description"
+                  >Total Dose</span
+                >
+                <div class="data-dictionary-node__download-group">
+                  <span class="data-dictionary-node__button-wrap"
+                    ><button
+                      type="button"
+                      class="data-dictionary-node__download-button g3-button g3-button--secondary"
+                      aria-haspopup="false"
+                    >
+                      JSON<i
+                        class="g3-icon g3-icon--sm g3-icon--download g3-button__icon g3-button__icon--right"
+                      ></i></button></span
+                  ><span class="data-dictionary-node__button-wrap"
+                    ><button
+                      type="button"
+                      class="data-dictionary-node__download-button g3-button g3-button--secondary"
+                      aria-haspopup="false"
+                    >
+                      TSV<i
+                        class="g3-icon g3-icon--sm g3-icon--download g3-button__icon g3-button__icon--right"
+                      ></i></button
+                  ></span>
+                </div>
+              </div>
+              <div
+                class="data-dictionary-node"
+                role="button"
+                tabindex="0"
+                aria-label="Dictionary node"
+                style="border-left-color: rgb(5, 184, 238)"
+              >
+                <span class="data-dictionary-node__title"
+                  ><i
+                    class="g3-icon g3-icon--folder data-dictionary-node__file-icon"
+                  ></i
+                  >Transfusion Medicine Procedure<i
+                    class="g3-icon g3-icon--chevron-right data-dictionary-node__toggle-icon"
+                  ></i></span
+                ><span class="data-dictionary-node__description"
+                  >Transfusion Medicine Procedure</span
+                >
+                <div class="data-dictionary-node__download-group">
+                  <span class="data-dictionary-node__button-wrap"
+                    ><button
+                      type="button"
+                      class="data-dictionary-node__download-button g3-button g3-button--secondary"
+                      aria-haspopup="false"
+                    >
+                      JSON<i
+                        class="g3-icon g3-icon--sm g3-icon--download g3-button__icon g3-button__icon--right"
+                      ></i></button></span
+                  ><span class="data-dictionary-node__button-wrap"
+                    ><button
+                      type="button"
+                      class="data-dictionary-node__download-button g3-button g3-button--secondary"
+                      aria-haspopup="false"
+                    >
+                      TSV<i
+                        class="g3-icon g3-icon--sm g3-icon--download g3-button__icon g3-button__icon--right"
+                      ></i></button
+                  ></span>
+                </div>
+              </div>
+              <div
+                class="data-dictionary-node"
+                role="button"
+                tabindex="0"
+                aria-label="Dictionary node"
+                style="border-left-color: rgb(5, 184, 238)"
+              >
+                <span class="data-dictionary-node__title"
+                  ><i
+                    class="g3-icon g3-icon--folder data-dictionary-node__file-icon"
+                  ></i
+                  >Tumor Assessment<i
+                    class="g3-icon g3-icon--chevron-right data-dictionary-node__toggle-icon"
+                  ></i></span
+                ><span class="data-dictionary-node__description"
+                  >Tumor Assessment</span
+                >
+                <div class="data-dictionary-node__download-group">
+                  <span class="data-dictionary-node__button-wrap"
+                    ><button
+                      type="button"
+                      class="data-dictionary-node__download-button g3-button g3-button--secondary"
+                      aria-haspopup="false"
+                    >
+                      JSON<i
+                        class="g3-icon g3-icon--sm g3-icon--download g3-button__icon g3-button__icon--right"
+                      ></i></button></span
+                  ><span class="data-dictionary-node__button-wrap"
+                    ><button
+                      type="button"
+                      class="data-dictionary-node__download-button g3-button g3-button--secondary"
+                      aria-haspopup="false"
+                    >
+                      TSV<i
+                        class="g3-icon g3-icon--sm g3-icon--download g3-button__icon g3-button__icon--right"
+                      ></i></button
+                  ></span>
+                </div>
+              </div>
+              <div
+                class="data-dictionary-node"
+                role="button"
+                tabindex="0"
+                aria-label="Dictionary node"
+                style="border-left-color: rgb(5, 184, 238)"
+              >
+                <span class="data-dictionary-node__title"
+                  ><i
+                    class="g3-icon g3-icon--folder data-dictionary-node__file-icon"
+                  ></i
+                  >Vitals<i
+                    class="g3-icon g3-icon--chevron-right data-dictionary-node__toggle-icon"
+                  ></i></span
+                ><span class="data-dictionary-node__description">Vitals</span>
+                <div class="data-dictionary-node__download-group">
+                  <span class="data-dictionary-node__button-wrap"
+                    ><button
+                      type="button"
+                      class="data-dictionary-node__download-button g3-button g3-button--secondary"
+                      aria-haspopup="false"
+                    >
+                      JSON<i
+                        class="g3-icon g3-icon--sm g3-icon--download g3-button__icon g3-button__icon--right"
+                      ></i></button></span
+                  ><span class="data-dictionary-node__button-wrap"
+                    ><button
+                      type="button"
+                      class="data-dictionary-node__download-button g3-button g3-button--secondary"
+                      aria-haspopup="false"
+                    >
+                      TSV<i
+                        class="g3-icon g3-icon--sm g3-icon--download g3-button__icon g3-button__icon--right"
+                      ></i></button
+                  ></span>
+                </div>
+              </div>
+            </div>
+            <div class="data-dictionary-category">
+              <div
+                class="data-dictionary-category__head"
+                style="border-left-color: rgb(173, 145, 255)"
+              >
+                <svg
+                  width="20"
+                  height="20"
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="data-dictionary-category__icon"
+                >
+                  <g fill="none" fill-rule="evenodd">
+                    <path fill="#AD91FF" fill-rule="nonzero"></path>
+                    <g fill="#FFF">
+                      <path></path>
+                      <path></path>
+                    </g>
+                  </g></svg
+                ><span>Administrative</span
+                ><span class="data-dictionary-category__download_template"
+                  >Download Template</span
+                >
+              </div>
+              <div
+                class="data-dictionary-node"
+                role="button"
+                tabindex="0"
+                aria-label="Dictionary node"
+                style="border-left-color: rgb(173, 145, 255)"
+              >
+                <span class="data-dictionary-node__title"
+                  ><i
+                    class="g3-icon g3-icon--folder data-dictionary-node__file-icon"
+                  ></i
+                  >Core Metadata Collection<i
+                    class="g3-icon g3-icon--chevron-right data-dictionary-node__toggle-icon"
+                  ></i></span
+                ><span class="data-dictionary-node__description"
+                  >Structured description of a collection of several dataset
+                </span>
+                <div class="data-dictionary-node__download-group">
+                  <span class="data-dictionary-node__button-wrap"
+                    ><button
+                      type="button"
+                      class="data-dictionary-node__download-button g3-button g3-button--secondary"
+                      aria-haspopup="false"
+                    >
+                      JSON<i
+                        class="g3-icon g3-icon--sm g3-icon--download g3-button__icon g3-button__icon--right"
+                      ></i></button></span
+                  ><span class="data-dictionary-node__button-wrap"
+                    ><button
+                      type="button"
+                      class="data-dictionary-node__download-button g3-button g3-button--secondary"
+                      aria-haspopup="false"
+                    >
+                      TSV<i
+                        class="g3-icon g3-icon--sm g3-icon--download g3-button__icon g3-button__icon--right"
+                      ></i></button
+                  ></span>
+                </div>
+              </div>
+              <div
+                class="data-dictionary-node"
+                role="button"
+                tabindex="0"
+                aria-label="Dictionary node"
+                style="border-left-color: rgb(173, 145, 255)"
+              >
+                <span class="data-dictionary-node__title"
+                  ><i
+                    class="g3-icon g3-icon--folder data-dictionary-node__file-icon"
+                  ></i
+                  >External Subject Reference<i
+                    class="g3-icon g3-icon--chevron-right data-dictionary-node__toggle-icon"
+                  ></i></span
+                ><span class="data-dictionary-node__description"
+                  >External Reference</span
+                >
+                <div class="data-dictionary-node__download-group">
+                  <span class="data-dictionary-node__button-wrap"
+                    ><button
+                      type="button"
+                      class="data-dictionary-node__download-button g3-button g3-button--secondary"
+                      aria-haspopup="false"
+                    >
+                      JSON<i
+                        class="g3-icon g3-icon--sm g3-icon--download g3-button__icon g3-button__icon--right"
+                      ></i></button></span
+                  ><span class="data-dictionary-node__button-wrap"
+                    ><button
+                      type="button"
+                      class="data-dictionary-node__download-button g3-button g3-button--secondary"
+                      aria-haspopup="false"
+                    >
+                      TSV<i
+                        class="g3-icon g3-icon--sm g3-icon--download g3-button__icon g3-button__icon--right"
+                      ></i></button
+                  ></span>
+                </div>
+              </div>
+              <div
+                class="data-dictionary-node"
+                role="button"
+                tabindex="0"
+                aria-label="Dictionary node"
+                style="border-left-color: rgb(173, 145, 255)"
+              >
+                <span class="data-dictionary-node__title"
+                  ><i
+                    class="g3-icon g3-icon--folder data-dictionary-node__file-icon"
+                  ></i
+                  >Patient Reported Outcomes Metadata<i
+                    class="g3-icon g3-icon--chevron-right data-dictionary-node__toggle-icon"
+                  ></i></span
+                ><span class="data-dictionary-node__description"
+                  >Patient Reported Outcomes Metadata</span
+                >
+                <div class="data-dictionary-node__download-group">
+                  <span class="data-dictionary-node__button-wrap"
+                    ><button
+                      type="button"
+                      class="data-dictionary-node__download-button g3-button g3-button--secondary"
+                      aria-haspopup="false"
+                    >
+                      JSON<i
+                        class="g3-icon g3-icon--sm g3-icon--download g3-button__icon g3-button__icon--right"
+                      ></i></button></span
+                  ><span class="data-dictionary-node__button-wrap"
+                    ><button
+                      type="button"
+                      class="data-dictionary-node__download-button g3-button g3-button--secondary"
+                      aria-haspopup="false"
+                    >
+                      TSV<i
+                        class="g3-icon g3-icon--sm g3-icon--download g3-button__icon g3-button__icon--right"
+                      ></i></button
+                  ></span>
+                </div>
+              </div>
+              <div
+                class="data-dictionary-node"
+                role="button"
+                tabindex="0"
+                aria-label="Dictionary node"
+                style="border-left-color: rgb(173, 145, 255)"
+              >
+                <span class="data-dictionary-node__title"
+                  ><i
+                    class="g3-icon g3-icon--folder data-dictionary-node__file-icon"
+                  ></i
+                  >Person<i
+                    class="g3-icon g3-icon--chevron-right data-dictionary-node__toggle-icon"
+                  ></i></span
+                ><span class="data-dictionary-node__description"
+                  >Patient Id</span
+                >
+                <div class="data-dictionary-node__download-group">
+                  <span class="data-dictionary-node__button-wrap"
+                    ><button
+                      type="button"
+                      class="data-dictionary-node__download-button g3-button g3-button--secondary"
+                      aria-haspopup="false"
+                    >
+                      JSON<i
+                        class="g3-icon g3-icon--sm g3-icon--download g3-button__icon g3-button__icon--right"
+                      ></i></button></span
+                  ><span class="data-dictionary-node__button-wrap"
+                    ><button
+                      type="button"
+                      class="data-dictionary-node__download-button g3-button g3-button--secondary"
+                      aria-haspopup="false"
+                    >
+                      TSV<i
+                        class="g3-icon g3-icon--sm g3-icon--download g3-button__icon g3-button__icon--right"
+                      ></i></button
+                  ></span>
+                </div>
+              </div>
+              <div
+                class="data-dictionary-node"
+                role="button"
+                tabindex="0"
+                aria-label="Dictionary node"
+                style="border-left-color: rgb(173, 145, 255)"
+              >
+                <span class="data-dictionary-node__title"
+                  ><i
+                    class="g3-icon g3-icon--folder data-dictionary-node__file-icon"
+                  ></i
+                  >Program<i
+                    class="g3-icon g3-icon--chevron-right data-dictionary-node__toggle-icon"
+                  ></i></span
+                ><span class="data-dictionary-node__description"
+                  >A broad framework of goals to be achieved. (NCIt C52647)
+                </span>
+                <div class="data-dictionary-node__download-group">
+                  <span class="data-dictionary-node__button-wrap"
+                    ><button
+                      type="button"
+                      class="data-dictionary-node__download-button g3-button g3-button--secondary"
+                      aria-haspopup="false"
+                    >
+                      JSON<i
+                        class="g3-icon g3-icon--sm g3-icon--download g3-button__icon g3-button__icon--right"
+                      ></i></button></span
+                  ><span class="data-dictionary-node__button-wrap"
+                    ><button
+                      type="button"
+                      class="data-dictionary-node__download-button g3-button g3-button--secondary"
+                      aria-haspopup="false"
+                    >
+                      TSV<i
+                        class="g3-icon g3-icon--sm g3-icon--download g3-button__icon g3-button__icon--right"
+                      ></i></button
+                  ></span>
+                </div>
+              </div>
+              <div
+                class="data-dictionary-node"
+                role="button"
+                tabindex="0"
+                aria-label="Dictionary node"
+                style="border-left-color: rgb(173, 145, 255)"
+              >
+                <span class="data-dictionary-node__title"
+                  ><i
+                    class="g3-icon g3-icon--folder data-dictionary-node__file-icon"
+                  ></i
+                  >Project<i
+                    class="g3-icon g3-icon--chevron-right data-dictionary-node__toggle-icon"
+                  ></i></span
+                ><span class="data-dictionary-node__description"
+                  >Any specifically defined piece of work that is undertaken or
+                  attempted to meet a single requirement. (NCIt C47885)
+                </span>
+                <div class="data-dictionary-node__download-group">
+                  <span class="data-dictionary-node__button-wrap"
+                    ><button
+                      type="button"
+                      class="data-dictionary-node__download-button g3-button g3-button--secondary"
+                      aria-haspopup="false"
+                    >
+                      JSON<i
+                        class="g3-icon g3-icon--sm g3-icon--download g3-button__icon g3-button__icon--right"
+                      ></i></button></span
+                  ><span class="data-dictionary-node__button-wrap"
+                    ><button
+                      type="button"
+                      class="data-dictionary-node__download-button g3-button g3-button--secondary"
+                      aria-haspopup="false"
+                    >
+                      TSV<i
+                        class="g3-icon g3-icon--sm g3-icon--download g3-button__icon g3-button__icon--right"
+                      ></i></button
+                  ></span>
+                </div>
+              </div>
+              <div
+                class="data-dictionary-node"
+                role="button"
+                tabindex="0"
+                aria-label="Dictionary node"
+                style="border-left-color: rgb(173, 145, 255)"
+              >
+                <span class="data-dictionary-node__title"
+                  ><i
+                    class="g3-icon g3-icon--folder data-dictionary-node__file-icon"
+                  ></i
+                  >Study<i
+                    class="g3-icon g3-icon--chevron-right data-dictionary-node__toggle-icon"
+                  ></i></span
+                ><span class="data-dictionary-node__description">Study</span>
+                <div class="data-dictionary-node__download-group">
+                  <span class="data-dictionary-node__button-wrap"
+                    ><button
+                      type="button"
+                      class="data-dictionary-node__download-button g3-button g3-button--secondary"
+                      aria-haspopup="false"
+                    >
+                      JSON<i
+                        class="g3-icon g3-icon--sm g3-icon--download g3-button__icon g3-button__icon--right"
+                      ></i></button></span
+                  ><span class="data-dictionary-node__button-wrap"
+                    ><button
+                      type="button"
+                      class="data-dictionary-node__download-button g3-button g3-button--secondary"
+                      aria-haspopup="false"
+                    >
+                      TSV<i
+                        class="g3-icon g3-icon--sm g3-icon--download g3-button__icon g3-button__icon--right"
+                      ></i></button
+                  ></span>
+                </div>
+              </div>
+              <div
+                class="data-dictionary-node"
+                role="button"
+                tabindex="0"
+                aria-label="Dictionary node"
+                style="border-left-color: rgb(173, 145, 255)"
+              >
+                <span class="data-dictionary-node__title"
+                  ><i
+                    class="g3-icon g3-icon--folder data-dictionary-node__file-icon"
+                  ></i
+                  >Subject<i
+                    class="g3-icon g3-icon--chevron-right data-dictionary-node__toggle-icon"
+                  ></i></span
+                ><span class="data-dictionary-node__description"
+                  >Patient Identifiers</span
+                >
+                <div class="data-dictionary-node__download-group">
+                  <span class="data-dictionary-node__button-wrap"
+                    ><button
+                      type="button"
+                      class="data-dictionary-node__download-button g3-button g3-button--secondary"
+                      aria-haspopup="false"
+                    >
+                      JSON<i
+                        class="g3-icon g3-icon--sm g3-icon--download g3-button__icon g3-button__icon--right"
+                      ></i></button></span
+                  ><span class="data-dictionary-node__button-wrap"
+                    ><button
+                      type="button"
+                      class="data-dictionary-node__download-button g3-button g3-button--secondary"
+                      aria-haspopup="false"
+                    >
+                      TSV<i
+                        class="g3-icon g3-icon--sm g3-icon--download g3-button__icon g3-button__icon--right"
+                      ></i></button
+                  ></span>
+                </div>
+              </div>
+            </div>
+            <div class="data-dictionary-category">
+              <div
+                class="data-dictionary-category__head"
+                style="border-left-color: rgb(155, 155, 155)"
+              >
+                <svg
+                  width="20"
+                  height="21"
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="data-dictionary-category__icon"
+                >
+                  <g fill-rule="nonzero" fill="none">
+                    <path fill="#9B9B9B"></path>
+                    <g transform="translate(4 9.5)" fill="#FFF">
+                      <rect width="5" height="2" rx="0.5"></rect>
+                      <path></path>
+                    </g>
+                  </g></svg
+                ><span>Internal</span
+                ><span class="data-dictionary-category__download_template"
+                  >Download Template</span
+                >
+              </div>
+              <div
+                class="data-dictionary-node"
+                role="button"
+                tabindex="0"
+                aria-label="Dictionary node"
+                style="border-left-color: rgb(155, 155, 155)"
+              >
+                <span class="data-dictionary-node__title"
+                  ><i
+                    class="g3-icon g3-icon--folder data-dictionary-node__file-icon"
+                  ></i
+                  >Data Release<i
+                    class="g3-icon g3-icon--chevron-right data-dictionary-node__toggle-icon"
+                  ></i></span
+                ><span class="data-dictionary-node__description"
+                  >Internal node to store different data releases.
+                </span>
+                <div class="data-dictionary-node__download-group">
+                  <span class="data-dictionary-node__button-wrap"
+                    ><button
+                      type="button"
+                      class="data-dictionary-node__download-button g3-button g3-button--secondary"
+                      aria-haspopup="false"
+                    >
+                      JSON<i
+                        class="g3-icon g3-icon--sm g3-icon--download g3-button__icon g3-button__icon--right"
+                      ></i></button></span
+                  ><span class="data-dictionary-node__button-wrap"
+                    ><button
+                      type="button"
+                      class="data-dictionary-node__download-button g3-button g3-button--secondary"
+                      aria-haspopup="false"
+                    >
+                      TSV<i
+                        class="g3-icon g3-icon--sm g3-icon--download g3-button__icon g3-button__icon--right"
+                      ></i></button
+                  ></span>
+                </div>
+              </div>
+              <div
+                class="data-dictionary-node"
+                role="button"
+                tabindex="0"
+                aria-label="Dictionary node"
+                style="border-left-color: rgb(155, 155, 155)"
+              >
+                <span class="data-dictionary-node__title"
+                  ><i
+                    class="g3-icon g3-icon--folder data-dictionary-node__file-icon"
+                  ></i
+                  >Root<i
+                    class="g3-icon g3-icon--chevron-right data-dictionary-node__toggle-icon"
+                  ></i></span
+                ><span class="data-dictionary-node__description"></span>
+                <div class="data-dictionary-node__download-group">
+                  <span class="data-dictionary-node__button-wrap"
+                    ><button
+                      type="button"
+                      class="data-dictionary-node__download-button g3-button g3-button--secondary"
+                      aria-haspopup="false"
+                    >
+                      JSON<i
+                        class="g3-icon g3-icon--sm g3-icon--download g3-button__icon g3-button__icon--right"
+                      ></i></button></span
+                  ><span class="data-dictionary-node__button-wrap"
+                    ><button
+                      type="button"
+                      class="data-dictionary-node__download-button g3-button g3-button--secondary"
+                      aria-haspopup="false"
+                    >
+                      TSV<i
+                        class="g3-icon g3-icon--sm g3-icon--download g3-button__icon g3-button__icon--right"
+                      ></i></button
+                  ></span>
+                </div>
+              </div>
+            </div>
+            <div class="data-dictionary-category">
+              <div
+                class="data-dictionary-category__head"
+                style="border-left-color: rgb(126, 197, 0)"
+              >
+                <svg
+                  width="20"
+                  height="20"
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="data-dictionary-category__icon"
+                >
+                  <g fill="none" fill-rule="evenodd">
+                    <path fill="#7EC500" fill-rule="nonzero"></path>
+                    <path fill="#FFF"></path>
+                    <path fill="#7EC500" fill-rule="nonzero"></path>
+                    <path fill="#7EC500" fill-rule="nonzero"></path>
+                  </g></svg
+                ><span>Data File</span
+                ><span class="data-dictionary-category__download_template"
+                  >Download Template</span
+                >
+              </div>
+              <div
+                class="data-dictionary-node"
+                role="button"
+                tabindex="0"
+                aria-label="Dictionary node"
+                style="border-left-color: rgb(126, 197, 0)"
+              >
+                <span class="data-dictionary-node__title"
+                  ><i
+                    class="g3-icon g3-icon--folder data-dictionary-node__file-icon"
+                  ></i
+                  >Submitted Unaligned Reads<i
+                    class="g3-icon g3-icon--chevron-right data-dictionary-node__toggle-icon"
+                  ></i></span
+                ><span class="data-dictionary-node__description"
+                  >Data file containing unaligned reads that have not been GDC
+                  Harmonized.</span
+                >
+                <div class="data-dictionary-node__download-group">
+                  <span class="data-dictionary-node__button-wrap"
+                    ><button
+                      type="button"
+                      class="data-dictionary-node__download-button g3-button g3-button--secondary"
+                      aria-haspopup="false"
+                    >
+                      JSON<i
+                        class="g3-icon g3-icon--sm g3-icon--download g3-button__icon g3-button__icon--right"
+                      ></i></button></span
+                  ><span class="data-dictionary-node__button-wrap"
+                    ><button
+                      type="button"
+                      class="data-dictionary-node__download-button g3-button g3-button--secondary"
+                      aria-haspopup="false"
+                    >
+                      TSV<i
+                        class="g3-icon g3-icon--sm g3-icon--download g3-button__icon g3-button__icon--right"
+                      ></i></button
+                  ></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+  <div id="append-root" class="spacer"></div>
+  <script
+    type="text/javascript"
+    src="https://localhost:9443/main.bundle.js"
+  ></script>
+
+  <span
+    id="recharts_measurement_span"
+    aria-hidden="true"
+    style="
+      position: absolute;
+      top: -20000px;
+      left: 0px;
+      padding: 0px;
+      margin: 0px;
+      border: none;
+      white-space: pre;
+      font-size: 14px;
+      letter-spacing: 0.32px;
+    "
+    >0</span
+  >
+</body>
