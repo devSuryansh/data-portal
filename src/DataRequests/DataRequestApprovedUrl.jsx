@@ -39,10 +39,9 @@ export default function DataRequestApprovedUrl({
           path: `/amanuensis/admin/project/approved-url/${projectId}`,
           method: 'GET',
         });
-        if (result.status === 200 && result.data && result.data.approved_url) {
+        if (result.status === 200 && result.data) {
           setApprovedUrl(result.data.approved_url);
-        }
-        else {
+        } else {
           setApprovedUrl('');
           setFetchApprovedUrlError({
             isError: true,
@@ -51,6 +50,10 @@ export default function DataRequestApprovedUrl({
         }
       } catch {
         setApprovedUrl('');
+        setFetchApprovedUrlError({
+          isError: true,
+          message: `Failed to fetch approved URL please try again later`,
+        });
       } finally {
         setActionPending(false);
       }
@@ -99,7 +102,7 @@ export default function DataRequestApprovedUrl({
           {isActionPending ? (
             <Spinner />
           ) : (
-            !(fetchApprovedUrlError.isError) && (
+            !fetchApprovedUrlError.isError && (
               <div
                 className={`data-request__approved-url ${
                   approvedUrl
@@ -134,8 +137,8 @@ export default function DataRequestApprovedUrl({
               {fetchApprovedUrlError.isError && actionRequestError.isError
                 ? fetchApprovedUrlError.message
                 : fetchApprovedUrlError.isError
-                ? fetchApprovedUrlError.message
-                : actionRequestError.message}
+                  ? fetchApprovedUrlError.message
+                  : actionRequestError.message}
             </span>
           )}
         </Form>
