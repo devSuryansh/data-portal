@@ -20,9 +20,9 @@ This folder contains Selenium-based end-to-end tests for the PCDC Data Portal.
 ## Folder structure
 
 ```bash
-selenium/
-  src/
-    tests/
+tests/
+  selenium/
+    integration_tests/
       smoke.spec.js
       versionFooter.spec.js
       dictionary.spec.js

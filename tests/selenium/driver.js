@@ -52,6 +52,13 @@ async function buildDriver() {
     options.addArguments('--headless=new');
   }
 
+  // Use Chrome user profile (OPTION 2)
+  // TODO: WIP - need to connec
+  const profileDir = process.env.CHROME_USER_DATA_DIR;
+  if (profileDir) {
+    options.addArguments(`--user-data-dir=${profileDir}`);
+  }
+
   // Standard stability options
   options.addArguments('--window-size=1400,900');
   options.addArguments('--disable-gpu');
