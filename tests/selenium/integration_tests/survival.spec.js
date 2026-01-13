@@ -167,7 +167,7 @@ async function handleReturningUserTerms(driver) {
 
 // ---- NEW USER FULL DISCLAIMER (commented out) ----
 // async function handleNewUserFullDisclaimer(driver) {
-//   // TODO: determine how “first-time user” is tracked (cookies/localStorage/back-end).
+//   // TODO: determine how “first-time user” is tracked (cookies/localStorage/back-end), could not replicate.
 // }
 
 async function assertDefaultSurvivalTypeOverall(driver) {
