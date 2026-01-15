@@ -1,35 +1,30 @@
-import { useEffect, useState } from 'react';
-import Select from 'react-select';
-import { Formik, Field, Form } from 'formik';
+import { useCallback, useEffect, useState } from 'react';
 import Button from '../gen3-ui-component/components/Button';
-import SimpleInputField from '../components/SimpleInputField';
 import ExplorerFilterDisplay from '../GuppyDataExplorer/ExplorerFilterDisplay';
-import { overrideSelectTheme } from '../utils';
 import '../GuppyDataExplorer/ExplorerFilterSetForms/ExplorerFilterSetForms.css';
+import './DataRequestFilterSets.css';
 import {
   addFiltersetToRequest,
   getProjectFilterSets,
 } from '../redux/dataRequest/asyncThunks';
 import { useAppDispatch, useAppSelector } from '../redux/hooks';
 import { getFilterState } from '../GuppyComponents/Utils/queries';
-
+import { FilterSetOpenFormFields } from '../GuppyDataExplorer/ExplorerFilterSetForms/FilterSetOpenForm';
+import { fetchWithToken } from '../redux/explorer/filterSetsAPI';
 export default function DataRequestFilterSets({
   projectId,
   savedFilterSets,
   onAction,
 }) {
   const dispatch = useAppDispatch();
-  const [selected, setSelected] = useState({ label: '', value: null });
   const [changeFilterSetRequestError, setChangeFilterSetRequestError] =
     useState({ isError: false, message: '' });
   const [
     fetchProjectFilterSetRequestError,
     setFetchProjectFilterSetRequestError,
   ] = useState({ isError: false, message: '' });
-  const options = (savedFilterSets?.data ?? []).map((filterSet) => ({
-    label: filterSet.name,
-    value: filterSet,
-  }));
+
+  const [selectedFiltersetId, setSelectedFiltersetId] = useState(undefined);
 
   const { isError, projectFilterSets } = useAppSelector(
     (state) => state.dataRequest,
@@ -56,7 +51,7 @@ export default function DataRequestFilterSets({
     });
   };
 
-  const onSubmit = async (filtersetId) => {
+  const submitFilterset = async (filtersetId) => {
     const actionRequest =
       /** @type {import("../redux/dataRequest/types").Request} */
       (
@@ -84,88 +79,51 @@ export default function DataRequestFilterSets({
     fetchProjectFilterSets(projectId);
   }, [projectId]);
 
-  return (
-    <div>
-      <Formik
-        initialValues={{
-          filtersetId: null,
-        }}
-        onSubmit={({ filtersetId }) => {
-          onSubmit(filtersetId);
-        }} // Call the onSubmit function to add the filter set to the request
-      >
-        {({ values }) => (
-          <Form className='data-request__form'>
-            <div className='data-request__header'>
-              <h2>Add Filter Set to Request</h2>
-            </div>
-            <div className='data-request__fields'>
-              <Field name='filtersetId'>
-                {() => (
-                  <div className='explorer-filter-set-form'>
-                    <SimpleInputField
-                      label='Filter Set'
-                      hideLabel={true}
-                      input={
-                        <Select
-                          inputId='open-filter-set-name'
-                          options={options}
-                          value={selected.value ? selected : null}
-                          isClearable={false}
-                          theme={overrideSelectTheme}
-                          placeholder='Select a filter set...'
-                          onChange={(e) => {
-                            values.filtersetId = e.value.id;
-                            setChangeFilterSetRequestError({
-                              isError: false,
-                              message: '',
-                            });
-                            setSelected(e);
-                          }}
-                        />
-                      }
-                    />
-                    {selected.value && (
-                      <SimpleInputField
-                        label='Description'
-                        hideLabel={true}
-                        input={
-                          <textarea
-                            className={'filter-set-description'}
-                            id='open-filter-set-description'
-                            disabled
-                            placeholder='No description'
-                            value={selected.value?.description}
-                          />
-                        }
-                      />
-                    )}
+  const addFilter = useCallback((actionState) => {
+    if (!actionState?.value) return;
 
-                    {selected.value && (
-                      <ExplorerFilterDisplay
-                        filter={selected.value?.filter}
-                        title='Selected Filter Set'
-                      />
-                    )}
-                  </div>
-                )}
-              </Field>
-            </div>
-            {selected.value && (
-              <Button
-                submit
-                className='data-request__submit'
-                label='Change Project Filter Set'
-              />
-            )}
-            {(changeFilterSetRequestError.isError || isError) && (
-              <span className='data-request__request-error'>
-                Unable to change filter's for this project request.
-              </span>
-            )}
-          </Form>
+    const nextId = actionState.value.id;
+    setSelectedFiltersetId((prev) => (prev === nextId ? prev : nextId));
+
+    setChangeFilterSetRequestError((prev) =>
+      prev.isError ? { isError: false, message: '' } : prev,
+    );
+  }, []);
+
+  return (
+    <div className='data-request-filter-sets'>
+      <div className='data-request__form data-request-filter-sets__form'>
+        <div className='data-request__header'>
+          <h2>Add Filter Set to Request</h2>
+        </div>
+
+        <div className='data-request__fields data-request-filter-sets__fields'>
+          <FilterSetOpenFormFields
+            currentFilterSet={{
+              name: '',
+              description: '',
+              filter: {},
+            }}
+            fetchWithToken={fetchWithToken}
+            filterSets={savedFilterSets?.data || []}
+            onActionStateChange={addFilter}
+          />
+        </div>
+
+        {selectedFiltersetId !== undefined && (
+          <Button
+            className='data-request__submit data-request-filter-sets__submit'
+            label='Change Project Filter Set'
+            onClick={() => submitFilterset(selectedFiltersetId)}
+          />
         )}
-      </Formik>
+
+        {(changeFilterSetRequestError.isError || isError) && (
+          <span className='data-request__request-error'>
+            Unable to change filter's for this project request.
+          </span>
+        )}
+      </div>
       <div>
         {fetchProjectFilterSetRequestError.isError ? (
           <div className='data-request__request-error'>
