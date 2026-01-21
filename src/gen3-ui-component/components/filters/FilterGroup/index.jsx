@@ -105,8 +105,17 @@ function FilterGroup({
   const showAnchorFilter =
     filterConfig.anchor !== undefined &&
     filterConfig.anchor.tabs.includes(tabTitle);
+
+  // Feature flag: controls visibility
   const showPatientIdsFilter =
     patientIdsConfig?.filter === true && tabTitle === 'Subject';
+
+  // Config completeness check
+  const patientIdsComplete =
+    !!patientIdsConfig?.filterName && !!patientIdsConfig?.displayName;
+
+  // Disable UI if enabled but misconfigured
+  const patientIdsDisabled = showPatientIdsFilter && !patientIdsComplete;
 
   const anchorLabel =
     filterConfig.anchor !== undefined && anchorValue !== '' && showAnchorFilter
@@ -508,7 +517,11 @@ function FilterGroup({
           />
         )}
         {showPatientIdsFilter && (
+          // Render Patient ID filter when enabled;
+          // pass disabled state if configuration is incomplete
           <PatientIdFilter
+            disabled={patientIdsDisabled}
+            disabledReason='Patient ID upload is disabled: missing filterName/displayName in configuration.'
             getPatientIds={retrieveFilterPatientIds}
             handlePatientIdsChange={handlePatientIdsChange}
             handleClearPatientIds={handleClearPatientIds}

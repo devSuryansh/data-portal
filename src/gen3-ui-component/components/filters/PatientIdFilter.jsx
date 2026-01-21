@@ -7,11 +7,18 @@ import Button from '../Button';
 
 /**
  * @param {Object} props
+ * @param {boolean} [props.disabled]
+ * @param {string} [props.disabledReason]
  * @param {Function} props.getPatientIds
  * @param {Function} props.handlePatientIdsChange
  * @param {Function} props.handleClearPatientIds
  */
+
+// Patient ID upload filter
+// Disabled when configuration is incomplete to prevent crashes
 function PatientIdFilter({
+  disabled = false,
+  disabledReason = '',
   getPatientIds,
   handlePatientIdsChange,
   handleClearPatientIds,
@@ -112,7 +119,23 @@ function PatientIdFilter({
           </div>
         </div>
 
-        <Button label='Upload IDs' rightIcon='upload' onClick={openModal} />
+        {/* Disable Upload IDs button when config is incomplete */}
+        <button
+          type='button'
+          className={`g3-button ${disabled ? 'g3-button--disabled' : 'g3-button--primary'}`}
+          aria-disabled={disabled}
+          title={disabled ? disabledReason : 'Upload a list of Patient IDs'}
+          onClick={(e) => {
+            if (disabled) {
+              e.preventDefault();
+              e.stopPropagation();
+              return;
+            }
+            openModal();
+          }}
+        >
+          Upload IDs
+        </button>
       </div>
       {isModalOpen && (
         <Popup
@@ -171,6 +194,8 @@ function PatientIdFilter({
 }
 
 PatientIdFilter.propTypes = {
+  disabled: PropTypes.bool,
+  disabledReason: PropTypes.string,
   getPatientIds: PropTypes.func.isRequired,
   handlePatientIdsChange: PropTypes.func.isRequired,
   handleClearPatientIds: PropTypes.func.isRequired,
