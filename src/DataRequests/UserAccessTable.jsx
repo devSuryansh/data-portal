@@ -18,7 +18,11 @@ const filterConfig = {
   Role: false,
   Actions: false,
 };
-export default function UserAccessTable({ projectId, setActionType, onAction }) {
+export default function UserAccessTable({
+  projectId,
+  setActionType,
+  onAction,
+}) {
   const dispatch = useAppDispatch();
 
   const {
@@ -125,6 +129,7 @@ export default function UserAccessTable({ projectId, setActionType, onAction }) 
         user.email,
         <Select
           key={`select-${user.email}`}
+          classNamePrefix='data-requests-select'
           options={userRoleOptions}
           value={{
             label: selectedRoles[user.email],
