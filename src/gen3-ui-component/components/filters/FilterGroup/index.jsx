@@ -105,8 +105,13 @@ function FilterGroup({
   const showAnchorFilter =
     filterConfig.anchor !== undefined &&
     filterConfig.anchor.tabs.includes(tabTitle);
+
+  // Feature is only shown when enabled AND fully configured
   const showPatientIdsFilter =
-    patientIdsConfig?.filter === true && tabTitle === 'Subject';
+    patientIdsConfig?.filter === true &&
+    !!patientIdsConfig?.filterName &&
+    !!patientIdsConfig?.displayName &&
+    tabTitle === 'Subject';
 
   const anchorLabel =
     filterConfig.anchor !== undefined && anchorValue !== '' && showAnchorFilter
@@ -508,6 +513,8 @@ function FilterGroup({
           />
         )}
         {showPatientIdsFilter && (
+          // Patient ID filter is only rendered when enabled AND fully configured.
+          // Prevents UI crashes caused by incomplete gitops configuration.
           <PatientIdFilter
             getPatientIds={retrieveFilterPatientIds}
             handlePatientIdsChange={handlePatientIdsChange}
