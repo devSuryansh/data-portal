@@ -19,6 +19,7 @@ import IconComponent from '../components/Icon';
 import dictIcons from '../img/icons/index';
 import './create.css';
 import './DataRequests.css';
+import { fetchWithToken } from '../redux/explorer/filterSetsAPI';
 
 function mapPropsToState(state) {
   return {
@@ -101,6 +102,7 @@ function DataRequestCreate({ isCreatePending }) {
     isError: false,
     message: '',
   });
+  const [filterSetCache, setFilterSetCache] = useState({});
   const [isRequestCreateErrorModalOpen, setRequestCreateErrorModalOpen] =
     useState(false);
 
@@ -309,6 +311,10 @@ function DataRequestCreate({ isCreatePending }) {
                   const addFilter = (filterSet) => {
                     if (!filterSet) return;
                     unshift(filterSet.id);
+                    setFilterSetCache((prevState) => ({
+                      ...prevState,
+                      [filterSet.id]: filterSet,
+                    }));
                     setOpenAddFilter(false);
                   };
                   return (
@@ -329,9 +335,7 @@ function DataRequestCreate({ isCreatePending }) {
                             {...valueContainerProps}
                           >
                             {values.filter_set_ids.map((filterId, index) => {
-                              const filter = savedFilterSets.find(
-                                (item) => item.id === filterId,
-                              );
+                              const filter = filterSetCache[filterId];
                               return (
                                 <span key={index} {...valueProps}>
                                   <Pill
@@ -343,6 +347,14 @@ function DataRequestCreate({ isCreatePending }) {
                                         false,
                                       );
                                       remove(index);
+                                      filterSetCache[filterId] &&
+                                        setFilterSetCache((prevState) => {
+                                          const newState = {
+                                            ...prevState,
+                                          };
+                                          delete newState[filterId];
+                                          return newState;
+                                        });
                                     }}
                                   >
                                     {filter.name}
@@ -367,6 +379,7 @@ function DataRequestCreate({ isCreatePending }) {
                                   description: '',
                                   filter: {},
                                 }}
+                                fetchWithToken={fetchWithToken}
                                 filterSets={savedFilterSets}
                                 onAction={addFilter}
                                 onClose={() => setOpenAddFilter(false)}

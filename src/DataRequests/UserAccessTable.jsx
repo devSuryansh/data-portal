@@ -178,6 +178,7 @@ export default function UserAccessTable({
         user.email,
         <Select
           key={`select-${user.email}`}
+          classNamePrefix='data-requests-select'
           options={userRoleOptions}
           value={{
             label: selectedRoles[user.email],

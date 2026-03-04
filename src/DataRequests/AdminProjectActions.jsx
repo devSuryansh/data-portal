@@ -20,6 +20,7 @@ import '../GuppyDataExplorer/ExplorerFilterSetForms/ExplorerFilterSetForms.css';
 import UserAccessTable from './UserAccessTable';
 import DataRequestFilterSets from './DataRequestFilterSets';
 import DataRequestApprovedUrl from './DataRequestApprovedUrl';
+import ViewProjectStatusHistory from './ViewProjectStatusHistory';
 
 const dataAccessSchema = Yup.object().shape({
   email: Yup.string().email().required('Must be a valid email address'),
@@ -437,6 +438,8 @@ export default function AdminProjectActions({
                 )}
               </div>
             );
+          case 'VIEW_PROJECT_STATUS_HISTORY':
+            return <ViewProjectStatusHistory projectId={project.id} />;
           default:
             if (actionRequestError.isError) {
               setRequestactionError({ isError: false, message: '' });
@@ -486,6 +489,16 @@ export default function AdminProjectActions({
                       buttonType='secondary'
                     />
                   </li>
+                  <li>
+                    <Button
+                      label='View Project Status History'
+                      onClick={() =>
+                        setActionType('VIEW_PROJECT_STATUS_HISTORY')
+                      }
+                      buttonType='secondary'
+                    />
+                  </li>
+
                   <li>
                     <Button
                       label='Delete Request'
