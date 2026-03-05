@@ -25,11 +25,7 @@ export default function DataRequestFilterSets({
   ] = useState({ isError: false, message: '' });
 
   const [selectedFiltersetId, setSelectedFiltersetId] = useState(undefined);
-
-  const { isError, projectFilterSets } = useAppSelector(
-    (state) => state.dataRequest,
-  );
-  // First useEffect: only fetch the filter sets
+  const [projectFilterSets, setProjectFilterSets] = useState([]);
 
   const fetchProjectFilterSets = (projectId) => {
     const actionRequest =
@@ -37,12 +33,13 @@ export default function DataRequestFilterSets({
       (dispatch(getProjectFilterSets(projectId)));
     actionRequest.then((action) => {
       if (action.payload.isError) {
+        setProjectFilterSets([]);
         setFetchProjectFilterSetRequestError({
           isError: true,
-          message: 'Failed to fetch filter sets',
+          message: action.payload.message,
         });
       } else {
-        // Successfully fetched filter sets
+        setProjectFilterSets(action.payload.data);
         setFetchProjectFilterSetRequestError({
           isError: false,
           message: '',
@@ -69,7 +66,7 @@ export default function DataRequestFilterSets({
       } else {
         setChangeFilterSetRequestError({
           isError: true,
-          message: 'Failed to add filter set to request',
+          message: action.payload.message,
         });
       }
     });
@@ -118,7 +115,7 @@ export default function DataRequestFilterSets({
           />
         )}
 
-        {(changeFilterSetRequestError.isError || isError) && (
+        {changeFilterSetRequestError.isError && (
           <span className='data-request__request-error'>
             Unable to change filter's for this project request.
           </span>

@@ -198,6 +198,16 @@
   margin-bottom: 0;
 }
 
+.data-request__request-error-modal {
+  align-items: center;
+  min-height: 40px;
+  margin-bottom: 15px;
+}
+
+.data-request__request-error-modal:last-of-type {
+  margin-bottom: 0;
+}
+
 .data-request__multi-value-values-row {
   display: flex;
   flex-flow: wrap;

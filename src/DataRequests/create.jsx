@@ -103,6 +103,8 @@ function DataRequestCreate({ isCreatePending }) {
     message: '',
   });
   const [filterSetCache, setFilterSetCache] = useState({});
+  const [isRequestCreateErrorModalOpen, setRequestCreateErrorModalOpen] =
+    useState(false);
 
   const initialValues = {
     name: '',
@@ -152,6 +154,15 @@ function DataRequestCreate({ isCreatePending }) {
 
             const { isError, message } = action.payload;
             setRequestCreateError({ isError, message });
+
+            // If backend tells there is an error, show a modal
+            if (
+              isError &&
+              typeof message === 'string' &&
+              message.toLowerCase().includes('already exists')
+            ) {
+              setRequestCreateErrorModalOpen(true);
+            }
           });
         }}
       >
@@ -404,6 +415,19 @@ function DataRequestCreate({ isCreatePending }) {
               <span className='data-request__request-error'>
                 {createRequestError.message}
               </span>
+            )}
+            {isRequestCreateErrorModalOpen && (
+              <SimplePopup>
+                <div className='data-request__request-error-modal'>
+                  <h3>Oops, there was an error in the form.</h3>
+                  <p>{createRequestError.message}</p>
+                  <p>&nbsp;</p>
+                  <Button
+                    label='Close'
+                    onClick={() => setRequestCreateErrorModalOpen(false)}
+                  />
+                </div>
+              </SimplePopup>
             )}
           </Form>
         )}
