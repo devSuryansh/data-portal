@@ -11,7 +11,6 @@ import Pill from '../components/Pill';
 import dictIcons from '../img/icons';
 import { overrideSelectTheme } from '../utils';
 import {
-  updateProjectApprovedUrl,
   updateProjectState,
   updateProjectUsers,
   updateUserDataAccess,
@@ -47,8 +46,8 @@ function errorObjectForField(errors, touched, fieldName) {
  * @param {DataRequestProject} [props.project]
  * @param {RootState["dataRequest"]["projectStates"]} [props.projectStates]
  * @param {RootState["explorer"]["savedFilterSets"]} props.savedFilterSets
- * @param {function} [props.onAction]
- * @param {function} [props.onClose]
+ * @param {(actionType: string) => void} [props.onAction] - Callback when action completes
+ * @param {() => void} [props.onClose] - Callback when popup closes
  */
 /* eslint-disable react/prop-types */
 export default function AdminProjectActions({
@@ -406,19 +405,21 @@ export default function AdminProjectActions({
                     buttonType='secondary'
                     onClick={() => {
                       setActionPending(true);
-                      dispatch(deleteRequest({ project_id: project.id })).then(
-                        (action) => {
-                          setActionPending(false);
-                          if (!action.payload.isError) {
-                            onAction?.(actionType);
-                            onClose?.();
-                            return;
-                          }
+                      const actionRequest =
+                        /** @type {import("../redux/dataRequest/types").Request} */
+                        (dispatch(deleteRequest({ project_id: project.id })));
 
-                          const { isError, message } = action.payload;
-                          setRequestactionError({ isError, message });
-                        },
-                      );
+                      actionRequest.then((action) => {
+                        setActionPending(false);
+                        if (!action.payload.isError) {
+                          onAction?.(actionType);
+                          onClose?.();
+                          return;
+                        }
+
+                        const { isError, message } = action.payload;
+                        setRequestactionError({ isError, message });
+                      });
                     }}
                   />
                   <Button
@@ -440,6 +441,9 @@ export default function AdminProjectActions({
           case 'VIEW_PROJECT_STATUS_HISTORY':
             return <ViewProjectStatusHistory projectId={project.id} />;
           default:
+            if (actionRequestError.isError) {
+              setRequestactionError({ isError: false, message: '' });
+            }
             return (
               <div className='data-request-admin__action-list-container'>
                 <ul className='data-request-admin__action-list'>
