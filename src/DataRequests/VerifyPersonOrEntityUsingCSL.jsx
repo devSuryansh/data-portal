@@ -28,8 +28,8 @@ export default function VerifyPersonOrEntityUsingCSL() {
       const response = await fetch(
         `/amanuensis/admin/run-csl-verification?name=${input}`,
       );
-      const data = await response.json();
-      if (data.status_code && data.status_code === 200) {
+      if(response.status === 200) {
+        const data = await response.json();
         if (data.total === 0) {
           setResponseJson([]);
         } else {
