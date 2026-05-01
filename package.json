@@ -3,7 +3,7 @@
   "version": "1.50.0",
   "description": "PCDC Data Portal",
   "dependencies": {
-    "@adobe/react-spectrum": "3.46.1",
+    "@adobe/react-spectrum": "^3.46.1",
     "@babel/core": "^7.29.0",
     "@babel/plugin-transform-runtime": "^7.29.0",
     "@babel/preset-env": "^7.29.0",
