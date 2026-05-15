@@ -1,11 +1,9 @@
 import { useEffect, useMemo } from 'react';
-import { useLocation } from 'react-router-dom';
 import {
   clearWorkspaceAllFilterSets,
   clearWorkspaceFilterSet,
   createWorkspaceFilterSet,
   duplicateWorkspaceFilterSet,
-  loadWorkspaceFilterSet,
   removeWorkspaceFilterSet,
   useWorkspaceFilterSet,
 } from '../../redux/explorer/slice';
@@ -20,15 +18,8 @@ export default function useFilterSetWorkspace() {
   const explorerId = useAppSelector((s) => s.explorer.explorerId);
   const workspaces = useAppSelector((s) => s.explorer.workspaces);
 
-  const location = useLocation();
-  useEffect(() => {
-    // inject filter value passed via router
-    /** @type {{ filter?: ExplorerFilter }} */
-    const locationState = location.state;
-    if (locationState?.filter !== undefined)
-      dispatch(loadWorkspaceFilterSet({ filter: locationState.filter }));
-  }, []);
-
+  // Location-state filter injection is handled by ExplorerDashboard before
+  // GuppyWrapper mounts, so it no longer needs to be done here.
   useEffect(() => {
     // sync browser store with workspace state
     const json = JSON.stringify(workspaces);

@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react';
+import { createSelector } from '@reduxjs/toolkit';
 import SimplePopup from '../components/SimplePopup';
 import { useAppDispatch, useAppSelector } from '../redux/hooks';
 import { fetchIndexPageCounts } from '../redux/index/asyncThunks';
@@ -33,18 +34,21 @@ function updateDocsToReview(reviewStatus) {
   });
 }
 
-/** @param {import('../redux/types').RootState} state */
-function userPopupSelector({ user }) {
-  const isRegistered = user.authz?.['/portal']?.length > 0;
-  const docsToBeReviewed = (user.docs_to_be_reviewed ?? []).filter(
-    (doc) => doc.required && doc.type !== 'survival-user-agreement'
-  );
-  return {
-    docsToBeReviewed,
-    shouldRegister: !isRegistered,
-    shouldReview: isRegistered && docsToBeReviewed.length > 0,
-  };
-}
+const userPopupSelector = createSelector(
+  /** @param {import('../redux/types').RootState} state */
+  (state) => state.user,
+  (user) => {
+    const isRegistered = user.authz?.['/portal']?.length > 0;
+    const docsToBeReviewed = (user.docs_to_be_reviewed ?? []).filter(
+      (doc) => doc.required && doc.type !== 'survival-user-agreement'
+    );
+    return {
+      docsToBeReviewed,
+      shouldRegister: !isRegistered,
+      shouldReview: isRegistered && docsToBeReviewed.length > 0,
+    };
+  },
+);
 
 function UserPopup() {
   const { docsToBeReviewed, shouldRegister, shouldReview } =
