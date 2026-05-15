@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import SummaryChartGroup from '../../gen3-ui-component/components/charts/SummaryChartGroup';
@@ -214,19 +214,15 @@ function ExplorerVisualization({
   // State for popup UI passing to child
   const [isLoadingExploreButton, setIsLoadingExploreButton] = useState(false);
 
-  const isMountedRef = useRef(true);
-
   // Load the external commons config
   function handleFetchExternalConfig() {
     setIsLoadingExploreButton(true);
     fetchWithCreds({ path: '/analysis/tools/external/config' })
       .then(({ data }) => {
-        if (isMountedRef.current) setExternalConfig(data);
+        setExternalConfig(data);
       })
       .catch(console.error)
-      .finally(() => {
-        if (isMountedRef.current) setIsLoadingExploreButton(false);
-      });
+      .finally(() => setIsLoadingExploreButton(false));
   }
 
   function updateExplorerView(view) {
@@ -242,10 +238,6 @@ function ExplorerVisualization({
 
     if (!explorerViews.includes(explorerView))
       updateExplorerView(explorerViews[0]);
-
-    return () => {
-      isMountedRef.current = false;
-    };
   }, []);
 
   const chartData = getChartData({

@@ -1,12 +1,12 @@
-import { useEffect, useRef, useState } from 'react';
-import { useLocation, useSearchParams } from 'react-router-dom';
+import { useEffect, useRef } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { contactEmail, explorerConfig } from '../localconf';
 import ErrorBoundary from '../components/ErrorBoundary';
 import Dashboard from '../Layout/Dashboard';
 import GuppyWrapper from '../GuppyComponents/GuppyWrapper';
 import NotFoundSVG from '../img/not-found.svg';
 import { fetchFilterSets } from '../redux/explorer/asyncThunks';
-import { loadWorkspaceFilterSet, updateExplorerFilter, useExplorerById } from '../redux/explorer/slice';
+import { updateExplorerFilter, useExplorerById } from '../redux/explorer/slice';
 import { useAppDispatch, useAppSelector } from '../redux/hooks';
 import ExplorerSelect from './ExplorerSelect';
 import ExplorerVisualization from './ExplorerVisualization';
@@ -27,7 +27,6 @@ function ExplorerDashboard() {
   /** @type {RootStore} */
   const reduxStore = useStore();
   const dispatch = useAppDispatch();
-  const location = useLocation();
 
   /** @param {RootState["explorer"]["explorerFilter"]} filter */
   function handleFilterChange(filter) {
@@ -63,25 +62,11 @@ function ExplorerDashboard() {
   searchParamId.current = isSearchParamIdValid
     ? Number(searchParams.get('id'))
     : explorerIds[0];
-
-  // Always start uninitialized so GuppyWrapper never mounts before ExplorerDashboard's
-  // useEffect has run. Without this, ProtectedContent may render children briefly before
-  // its preload starts (using stale auth state), causing GuppyWrapper to mount/fetch,
-  // then ProtectedContent hides children while preloading (unmounting GuppyWrapper and
-  // aborting requests), then remounts everything when preload completes.
-  const locationFilter = location.state?.filter;
-  const [isInitialized, setIsInitialized] = useState(false);
-
   useEffect(() => {
     // sync search param with explorer id state
     setSearchParams(`id=${searchParamId.current}`, { replace: true });
     if (explorerId !== searchParamId.current)
       dispatch(useExplorerById(searchParamId.current));
-    // Apply any filter passed via router state (e.g. from IndexOverview)
-    // before GuppyWrapper mounts so it starts with the correct filter.
-    if (locationFilter !== undefined)
-      dispatch(loadWorkspaceFilterSet({ filter: locationFilter }));
-    setIsInitialized(true);
 
     function switchExplorerOnBrowserNavigation() {
       if (explorerIds.includes(searchParamId.current))
@@ -111,9 +96,6 @@ function ExplorerDashboard() {
   }
 
   const dictionaryVersion = getDictionaryVersion();
-
-  if (!isInitialized) return null;
-
   return (
     <GuppyWrapper
       key={explorerId}

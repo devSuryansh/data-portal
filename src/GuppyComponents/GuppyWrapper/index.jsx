@@ -243,7 +243,7 @@ function GuppyWrapper({
     if (isMounted.current)
       setState((prevState) => ({ ...prevState, isLoadingAggsData: true }));
 
-    return Promise.all([
+    Promise.all([
       fetchAggsChartDataFromGuppy(filter),
       fetchAggsCountDataFromGuppy(filter),
       fetchAggsOptionsDataFromGuppy({
@@ -370,15 +370,8 @@ function GuppyWrapper({
   function fetchGuppyData(fields) {
     controller.current.abort();
     controller.current = new AbortController();
-    // Capture the signal for this batch of requests. If the signal is aborted
-    // (component unmounted / user navigated away / new fetchGuppyData call),
-    // the resulting rejections are intentional and should not surface as errors.
-    const { signal } = controller.current;
-    const suppressAbort = (err) => {
-      if (!signal.aborted) throw err;
-    };
-    fetchAggsDataFromGuppy(filterState).catch(suppressAbort);
-    fetchRawDataFromGuppy({ fields, updateDataWhenReceive: true }).catch(suppressAbort);
+    fetchAggsDataFromGuppy(filterState);
+    fetchRawDataFromGuppy({ fields, updateDataWhenReceive: true });
   }
 
   const rawDataFields =
