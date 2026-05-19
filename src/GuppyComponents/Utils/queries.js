@@ -798,6 +798,50 @@ export function getGQLFilter(filterState) {
 }
 
 /**
+ * Recursively extract all IN filter options from a filter node, prefixing
+ * nested path fields with their path (e.g. "histologies.disease_phase").
+ * @param {object} filterNode
+ * @param {string} [prefix]
+ * @returns {object}
+ */
+function extractINOptions(filterNode, prefix = '') {
+  if (!filterNode || typeof filterNode !== 'object') return {};
+  let result = {};
+
+  const combinator = Object.keys(filterNode)[0];
+  if (!combinator) return result;
+
+  if (combinator === 'AND' || combinator === 'OR') {
+    for (const item of filterNode[combinator]) {
+      Object.assign(result, extractINOptions(item, prefix));
+    }
+  } else if (combinator === 'IN') {
+    const value = filterNode['IN'];
+    for (const field of Object.keys(value)) {
+      const fullField = prefix ? `${prefix}.${field}` : field;
+      result[fullField] = {
+        __type: 'OPTION',
+        selectedValues: value[field],
+        isExclusion: false,
+      };
+    }
+  } else if (combinator === 'nested') {
+    const nested = filterNode['nested'];
+    const path = nested.path;
+    const newPrefix = prefix ? `${prefix}.${path}` : path;
+    const innerCombinator = Object.keys(nested).find((k) => k !== 'path');
+    if (innerCombinator) {
+      Object.assign(
+        result,
+        extractINOptions({ [innerCombinator]: nested[innerCombinator] }, newPrefix),
+      );
+    }
+  }
+
+  return result;
+}
+
+/**
  * Convert filter obj into GQL filter format
  * @param {GqlFilter} gqlFilter
  * @returns {FilterState}
@@ -832,6 +876,10 @@ export function getFilterState(gqlFilter) {
         }
 
         values = { ...option, ...values };
+      } else if (valueCombinator === 'nested') {
+        Object.assign(values, extractINOptions(filterValue));
+      } else if (valueCombinator === 'AND' || valueCombinator === 'OR') {
+        Object.assign(values, extractINOptions(filterValue));
       }
       // else if (valueCombinator === '!=') {
       // TODO: handle not filter here
