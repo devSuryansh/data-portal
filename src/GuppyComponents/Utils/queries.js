@@ -813,7 +813,19 @@ function extractINOptions(filterNode, prefix = '') {
 
   if (combinator === 'AND' || combinator === 'OR') {
     for (const item of filterNode[combinator]) {
-      Object.assign(result, extractINOptions(item, prefix));
+      const extracted = extractINOptions(item, prefix);
+      for (const field of Object.keys(extracted)) {
+        if (
+          result[field] &&
+          result[field].__type === 'RANGE' &&
+          extracted[field].__type === 'RANGE'
+        ) {
+          // Merge GTE/LTE siblings for the same field into one RANGE filter
+          result[field] = { __type: 'RANGE', ...result[field], ...extracted[field] };
+        } else {
+          result[field] = extracted[field];
+        }
+      }
     }
   } else if (combinator === 'IN') {
     const value = filterNode['IN'];
@@ -823,6 +835,28 @@ function extractINOptions(filterNode, prefix = '') {
         __type: 'OPTION',
         selectedValues: value[field],
         isExclusion: false,
+      };
+    }
+  } else if (combinator === 'GTE') {
+    const value = filterNode['GTE'];
+    for (const field of Object.keys(value)) {
+      const fullField = prefix ? `${prefix}.${field}` : field;
+      result[fullField] = { __type: 'RANGE', lowerBound: value[field] };
+    }
+  } else if (combinator === 'LTE') {
+    const value = filterNode['LTE'];
+    for (const field of Object.keys(value)) {
+      const fullField = prefix ? `${prefix}.${field}` : field;
+      result[fullField] = { __type: 'RANGE', upperBound: value[field] };
+    }
+  } else if (combinator === 'EQ') {
+    const value = filterNode['EQ'];
+    for (const field of Object.keys(value)) {
+      const fullField = prefix ? `${prefix}.${field}` : field;
+      result[fullField] = {
+        __type: 'RANGE',
+        lowerBound: value[field],
+        upperBound: value[field],
       };
     }
   } else if (combinator === 'nested') {
@@ -877,16 +911,60 @@ export function getFilterState(gqlFilter) {
 
         values = { ...option, ...values };
       } else if (valueCombinator === 'nested') {
-        Object.assign(values, extractINOptions(filterValue));
+        const extracted = extractINOptions(filterValue);
+        for (const field of Object.keys(extracted)) {
+          if (
+            values[field] &&
+            values[field].__type === 'RANGE' &&
+            extracted[field].__type === 'RANGE'
+          ) {
+            values[field] = { __type: 'RANGE', ...values[field], ...extracted[field] };
+          } else {
+            values[field] = extracted[field];
+          }
+        }
       } else if (valueCombinator === 'AND' || valueCombinator === 'OR') {
-        Object.assign(values, extractINOptions(filterValue));
+        const extracted = extractINOptions(filterValue);
+        for (const field of Object.keys(extracted)) {
+          if (
+            values[field] &&
+            values[field].__type === 'RANGE' &&
+            extracted[field].__type === 'RANGE'
+          ) {
+            values[field] = { __type: 'RANGE', ...values[field], ...extracted[field] };
+          } else {
+            values[field] = extracted[field];
+          }
+        }
+      } else if (valueCombinator === 'GTE') {
+        for (const field of Object.keys(value)) {
+          const existing = values[field];
+          values[field] = {
+            __type: 'RANGE',
+            ...(existing && existing.__type === 'RANGE' ? existing : {}),
+            lowerBound: value[field],
+          };
+        }
+      } else if (valueCombinator === 'LTE') {
+        for (const field of Object.keys(value)) {
+          const existing = values[field];
+          values[field] = {
+            __type: 'RANGE',
+            ...(existing && existing.__type === 'RANGE' ? existing : {}),
+            upperBound: value[field],
+          };
+        }
+      } else if (valueCombinator === 'EQ') {
+        for (const field of Object.keys(value)) {
+          values[field] = {
+            __type: 'RANGE',
+            lowerBound: value[field],
+            upperBound: value[field],
+          };
+        }
       }
       // else if (valueCombinator === '!=') {
       // TODO: handle not filter here
-      // } else if (valueCombinator === 'GTE' || valueCombinator === 'LTE') {
-      // TODO: handle range filter here
-      // } else if (valueCombinator === 'AND' || valueCombinator === 'OR') {
-      // TODO: handle anchor filter here
       // }
     }
 
