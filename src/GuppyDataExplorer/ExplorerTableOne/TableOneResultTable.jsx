@@ -26,20 +26,18 @@ export default function TableOneResultTable({ submittedName, result }) {
               <td>
                 <strong>{variable.name}</strong>
               </td>
-              <td></td>
-              <td></td>
+              <td>{result.trueCount}</td>
+              <td>{result.everythingElseCount - variable.missingFromEverythingElseCount}</td>
             </tr>
             <tr>
               <td className='table-one__indent'>
                 <strong>Missing</strong>
               </td>
               <td>
-                {variable.missingFromTruePercent} (
-                {variable.missingFromTrueCount})
+                {variable.missingFromTrueCount !== 0 ? `${variable.missingFromTruePercent} (${variable.missingFromTrueCount})` : '(-)'}
               </td>
               <td>
-                {variable.missingFromEverythingElsePercent} (
-                {variable.missingFromEverythingElseCount})
+                {variable.missingFromEverythingElseCount !== 0 ? `${variable.missingFromEverythingElsePercent} (${variable.missingFromEverythingElseCount})` : '(-)'}
               </td>
             </tr>
             {variable.type === 'categorical' &&
@@ -47,19 +45,18 @@ export default function TableOneResultTable({ submittedName, result }) {
                 <tr key={`${variable.name}-${k.name}`}>
                   <td className='table-one__indent'>{k.name}</td>
                   <td>
-                    {k.data.truePercent} ({k.data.trueCount})
+                    {k.data.trueCount !== 0 ? `${k.data.truePercent} (${k.data.trueCount})` : '(-)'}
                   </td>
                   <td>
-                    {k.data.everythingElsePercent} ({k.data.everythingElseCount}
-                    )
+                    {k.data.everythingElseCount !== 0 ? `${k.data.everythingElsePercent} (${k.data.everythingElseCount})` : '(-)'}
                   </td>
                 </tr>
               ))}
             {variable.type === 'continuous' && variable.mean && (
               <tr key={`${variable.name}-mean`}>
                 <td className='table-one__indent'>Mean</td>
-                <td>{variable.mean.trueMean}</td>
-                <td>{variable.mean.everythingElseMean}</td>
+                <td>{result.trueCount !== 0 ? variable.mean.trueMean : null}</td>
+                <td>{result.everythingElseCount !== 0 ? variable.mean.everythingElseMean : null}</td>
               </tr>
             )}
             {variable.type === 'continuous' &&
@@ -67,11 +64,10 @@ export default function TableOneResultTable({ submittedName, result }) {
                 <tr key={`${variable.name}-${bucket.name}`}>
                   <td className='table-one__indent'>{bucket.name}</td>
                   <td>
-                    {bucket.data.trueMean} ({bucket.data.trueCount})
+                    {bucket.data.trueCount !== 0 ? `${bucket.data.trueMean} (${bucket.data.trueCount})` : '(-)'}
                   </td>
                   <td>
-                    {bucket.data.everythingElseMean} (
-                    {bucket.data.everythingElseCount})
+                    {bucket.data.everythingElseCount !== 0 ? `${bucket.data.everythingElseMean} (${bucket.data.everythingElseCount})` : '(-)'}
                   </td>
                 </tr>
               ))}
