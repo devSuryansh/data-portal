@@ -17,6 +17,9 @@ export default function DataRequestFilterSets({
   onAction,
 }) {
   const dispatch = useAppDispatch();
+  const anchorConfig = useAppSelector(
+    (state) => state.explorer.config.filterConfig?.anchor,
+  );
   const [changeFilterSetRequestError, setChangeFilterSetRequestError] =
     useState({ isError: false, message: '' });
   const [
@@ -162,7 +165,7 @@ export default function DataRequestFilterSets({
                     Object.keys(filterSet.graphql_object).length > 0 &&
                     !filterSet.filter_source_internal_id ? (
                       <ExplorerFilterDisplay
-                        filter={getFilterState(filterSet.graphql_object)}
+                        filter={getFilterState(filterSet.graphql_object, anchorConfig)}
                         title={filterSet.name}
                         manual={true}
                       />
