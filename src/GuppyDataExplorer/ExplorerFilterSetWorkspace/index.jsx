@@ -297,6 +297,7 @@ function ExplorerFilterSetWorkspace() {
               </button>
               <button
                 className='explorer-filter-set-workspace__action-button'
+                data-tour-compose-button
                 type='button'
                 onClick={toggleComposeState}
                 disabled={disableCompose}

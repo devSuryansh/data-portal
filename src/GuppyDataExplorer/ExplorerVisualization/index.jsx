@@ -17,6 +17,7 @@ import ExplorerTable from '../ExplorerTable';
 import ExplorerSurvivalAnalysis from '../ExplorerSurvivalAnalysis';
 import ExplorerTableOne from '../ExplorerTableOne';
 import ReduxExplorerButtonGroup from '../ExplorerButtonGroup/ReduxExplorerButtonGroup';
+import ExplorerWizard from '../ExplorerWizard';
 import './ExplorerVisualization.css';
 import { FILTER_TYPE } from '../ExplorerFilterSetWorkspace/utils';
 
@@ -184,6 +185,9 @@ function ExplorerVisualization({
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const [isRequestAccessModalOpen, setRequestAccessModalOpen] = useState(false);
+  const [isWizardOpen, setWizardOpen] = useState(() =>
+    window.localStorage.getItem(ExplorerWizard.STORAGE_KEY) !== 'true'
+  );
 
   const {
     buttonConfig,
@@ -323,6 +327,13 @@ function ExplorerVisualization({
           ))}
         </div>
         <div className='explorer-visualization__button-group'>
+          <button
+            className='explorer-visualization__guide-button'
+            onClick={() => setWizardOpen(true)}
+            type='button'
+          >
+            Guide
+          </button>
           {accessibleCount < totalCount && !hideGetAccessButton && (
             <>
               <ExplorerRequestAccessButton
@@ -377,6 +388,12 @@ function ExplorerVisualization({
           <ReduxExplorerButtonGroup {...buttonGroupProps} />
         </div>
       </div>
+      {isWizardOpen && (
+        <ExplorerWizard
+          isOpen={isWizardOpen}
+          onClose={() => setWizardOpen(false)}
+        />
+      )}
       <ExplorerFilterSetWorkspace />
       <ViewContainer
         showIf={explorerView === 'summary view'}
