@@ -56,12 +56,12 @@ function activateDiseaseTab() {
 const steps = [
   {
     target: '.g3-filter-group__filter-finder',
-    text:
+    content:
       'Use the search box at the top of the Filters panel to quickly find variables of interest. A good starting point is Histology in the Disease tab.',
   },
   {
     target: '[data-tour-filter-tab="Disease"]',
-    text:
+    content:
       'The Disease tab contains clinically useful variables such as Histology. Start here when you are not sure which filter field to use.',
   },
   {
@@ -71,17 +71,25 @@ const steps = [
       '[data-tour-filter-section="Age at Tumor Assessment (days)"]',
       '[data-tour-filter-section="Age at Tumor Assessment"]',
     ],
-    text:
+    content:
       'For longitudinal data, choose a Disease Phase with the anchor controls, then use fields such as Age at Tumor Assessment to filter within that phase.',
   },
   {
     target: '.top-bar-menu button[title="Documents"]',
-    text:
-      'Need help? Open the info icon for the User Guide and related documents. You can also contact pcdc_help@lists.uchicago.edu.',
+    content: (
+      <>
+        Need help? Open the info icon for the User Guide and related documents.
+        You can also contact{' '}
+        <a href='mailto:pcdc_help@lists.uchicago.edu'>
+          pcdc_help@lists.uchicago.edu
+        </a>
+        .
+      </>
+    ),
   },
   {
     target: '[data-tour-compose-button]',
-    text:
+    content:
       'Filter Set Workspace stores your active filters. Compose combines saved filter sets with AND or OR logic. This is most useful after you have saved at least one filter set.',
   },
 ];
@@ -186,7 +194,7 @@ function ExplorerWizard({ isOpen, onClose }) {
           onClick={closeWizard}
           type='button'
         />
-        <p>{step.text}</p>
+        <p>{step.content}</p>
         <footer>
           <button
             className='explorer-wizard__skip'

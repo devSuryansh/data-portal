@@ -60,6 +60,11 @@
   text-align: center;
 }
 
+.explorer-wizard__card a {
+  color: var(--g3-color__base-blue);
+  text-decoration: underline;
+}
+
 .explorer-wizard__card footer {
   display: flex;
   align-items: center;
