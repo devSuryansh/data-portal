@@ -21,6 +21,19 @@ import ExplorerWizard from '../ExplorerWizard';
 import './ExplorerVisualization.css';
 import { FILTER_TYPE } from '../ExplorerFilterSetWorkspace/utils';
 
+function getInitialExplorerWizardCompleted() {
+  // TODO: replace this local placeholder with the API value when the
+  // wizard-completion endpoint is available.
+  return window.localStorage.getItem(
+    ExplorerWizard.COMPLETION_STORAGE_KEY,
+  ) === 'true';
+}
+
+function markExplorerWizardCompleted() {
+  // TODO: replace this with a POST/PUT to the wizard-completion endpoint.
+  window.localStorage.setItem(ExplorerWizard.COMPLETION_STORAGE_KEY, 'true');
+}
+
 /** @typedef {import('../types').ChartConfig} ChartConfig */
 /** @typedef {import('../types').ExplorerFilter} ExplorerFilter */
 /** @typedef {import('../types').GqlSort} GqlSort */
@@ -185,8 +198,8 @@ function ExplorerVisualization({
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const [isRequestAccessModalOpen, setRequestAccessModalOpen] = useState(false);
-  const [isWizardOpen, setWizardOpen] = useState(() =>
-    window.localStorage.getItem(ExplorerWizard.STORAGE_KEY) !== 'true'
+  const [isWizardOpen, setWizardOpen] = useState(
+    () => !getInitialExplorerWizardCompleted(),
   );
 
   const {
@@ -236,6 +249,11 @@ function ExplorerVisualization({
       state: { scrollY: window.scrollY },
     });
   }
+
+  function completeExplorerWizard() {
+    markExplorerWizardCompleted();
+  }
+
   useEffect(() => {
     // Load config on first mount of parent, then pass to child.
     handleFetchExternalConfig();
@@ -392,6 +410,7 @@ function ExplorerVisualization({
         <ExplorerWizard
           isOpen={isWizardOpen}
           onClose={() => setWizardOpen(false)}
+          onDone={completeExplorerWizard}
         />
       )}
       <ExplorerFilterSetWorkspace />

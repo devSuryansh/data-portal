@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from 'react';
 import PropTypes from 'prop-types';
 import './ExplorerWizard.css';
 
-const STORAGE_KEY = 'pcdc-explorer-wizard-dismissed-v1';
+const COMPLETION_STORAGE_KEY = 'pcdc-explorer-wizard-completed-v1';
 
 function getElements(selectors) {
   const selectorList = Array.isArray(selectors) ? selectors : [selectors];
@@ -94,8 +94,8 @@ const steps = [
   },
 ];
 
-/** @param {{ isOpen: boolean, onClose: () => void }} props */
-function ExplorerWizard({ isOpen, onClose }) {
+/** @param {{ isOpen: boolean, onClose: () => void, onDone: () => void }} props */
+function ExplorerWizard({ isOpen, onClose, onDone }) {
   const [stepIndex, setStepIndex] = useState(0);
   const [rects, setRects] = useState([]);
   const [popover, setPopover] = useState(null);
@@ -103,8 +103,8 @@ function ExplorerWizard({ isOpen, onClose }) {
 
   const targetSelectors = useMemo(() => step.target, [step]);
 
-  function closeWizard() {
-    window.localStorage.setItem(STORAGE_KEY, 'true');
+  function completeWizard() {
+    onDone();
     onClose();
   }
 
@@ -191,14 +191,14 @@ function ExplorerWizard({ isOpen, onClose }) {
         <button
           aria-label='Close guide'
           className='explorer-wizard__close'
-          onClick={closeWizard}
+          onClick={onClose}
           type='button'
         />
         <p>{step.content}</p>
         <footer>
           <button
             className='explorer-wizard__skip'
-            onClick={closeWizard}
+            onClick={onClose}
             type='button'
           >
             Skip
@@ -216,7 +216,7 @@ function ExplorerWizard({ isOpen, onClose }) {
             <button
               className='explorer-wizard__next'
               onClick={() =>
-                isLastStep ? closeWizard() : setStepIndex((i) => i + 1)
+                isLastStep ? completeWizard() : setStepIndex((i) => i + 1)
               }
               type='button'
             >
@@ -234,8 +234,9 @@ function ExplorerWizard({ isOpen, onClose }) {
 ExplorerWizard.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
+  onDone: PropTypes.func.isRequired,
 };
 
-ExplorerWizard.STORAGE_KEY = STORAGE_KEY;
+ExplorerWizard.COMPLETION_STORAGE_KEY = COMPLETION_STORAGE_KEY;
 
 export default ExplorerWizard;
