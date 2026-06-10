@@ -15,11 +15,9 @@ export default function DataRequestFilterSets({
   projectId,
   savedFilterSets,
   onAction,
+  admin = false,
 }) {
   const dispatch = useAppDispatch();
-  const anchorConfig = useAppSelector(
-    (state) => state.explorer.config.filterConfig?.anchor,
-  );
   const [changeFilterSetRequestError, setChangeFilterSetRequestError] =
     useState({ isError: false, message: '' });
   const [
@@ -28,6 +26,7 @@ export default function DataRequestFilterSets({
   ] = useState({ isError: false, message: '' });
 
   const [selectedFiltersetId, setSelectedFiltersetId] = useState(undefined);
+  const [copyFilterAsJson, setCopyFilterAsJson] = useState(false);
   const [projectFilterSets, setProjectFilterSets] = useState([]);
 
   const fetchProjectFilterSets = (projectId) => {
@@ -133,7 +132,20 @@ export default function DataRequestFilterSets({
           <div className='data-request__form'>
             <div className='data-request__header'>
               <h3>Current Filters:</h3>
+ 
+              {admin && (
+                <Button
+                  label={copyFilterAsJson ? 'Close JSON' : 'Open JSON'}
+                  onClick={() => setCopyFilterAsJson(!copyFilterAsJson)}
+                />
+              )}
             </div>
+            {admin && copyFilterAsJson && (
+              <pre>
+                {JSON.stringify(projectFilterSets, null, 2)}
+              </pre>
+            )}
+
             <div className='data-request__fields'>
               {projectFilterSets.some(
                 (filterSet) => filterSet.filter_object,
@@ -165,7 +177,7 @@ export default function DataRequestFilterSets({
                     Object.keys(filterSet.graphql_object).length > 0 &&
                     !filterSet.filter_source_internal_id ? (
                       <ExplorerFilterDisplay
-                        filter={getFilterState(filterSet.graphql_object, anchorConfig)}
+                        filter={getFilterState(filterSet.graphql_object)}
                         title={filterSet.name}
                         manual={true}
                       />
