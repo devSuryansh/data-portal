@@ -137,13 +137,13 @@ function DataRequestCreate({ isCreatePending }) {
 
           createRequest.then((action) => {
             if (!action.payload.isError) {
-              const handle = window.open(
-                getAccessButtonLink,
-                '_blank',
-                'popup',
-              );
-              handle?.blur();
-              window.focus();
+              if (!isAdmin) {
+                window.open(
+                  getAccessButtonLink,
+                  '_blank',
+                  'noopener,noreferrer',
+                );
+              }
               navigate('/requests', {
                 // Set success message
                 state: { successMessage: 'Data request created successfully!' },
