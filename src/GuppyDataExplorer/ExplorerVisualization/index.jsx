@@ -17,22 +17,9 @@ import ExplorerTable from '../ExplorerTable';
 import ExplorerSurvivalAnalysis from '../ExplorerSurvivalAnalysis';
 import ExplorerTableOne from '../ExplorerTableOne';
 import ReduxExplorerButtonGroup from '../ExplorerButtonGroup/ReduxExplorerButtonGroup';
-import ExplorerWizard from '../ExplorerWizard';
+import ExplorerWizard, { OPEN_EXPLORER_WIZARD_EVENT } from '../ExplorerWizard';
 import './ExplorerVisualization.css';
 import { FILTER_TYPE } from '../ExplorerFilterSetWorkspace/utils';
-
-function getInitialExplorerWizardCompleted() {
-  // TODO: replace this local placeholder with the API value when the
-  // wizard-completion endpoint is available.
-  return window.localStorage.getItem(
-    ExplorerWizard.COMPLETION_STORAGE_KEY,
-  ) === 'true';
-}
-
-function markExplorerWizardCompleted() {
-  // TODO: replace this with a POST/PUT to the wizard-completion endpoint.
-  window.localStorage.setItem(ExplorerWizard.COMPLETION_STORAGE_KEY, 'true');
-}
 
 /** @typedef {import('../types').ChartConfig} ChartConfig */
 /** @typedef {import('../types').ExplorerFilter} ExplorerFilter */
@@ -158,6 +145,13 @@ function openLink(link) {
   }
 }
 
+function getInitialExplorerWizardCompleted() {
+  return (
+    window.localStorage.getItem(ExplorerWizard.COMPLETION_STORAGE_KEY) ===
+    'true'
+  );
+}
+
 /**
  * @typedef {Object} ExplorerVisualizationProps
  * @property {number} accessibleCount
@@ -198,9 +192,6 @@ function ExplorerVisualization({
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const [isRequestAccessModalOpen, setRequestAccessModalOpen] = useState(false);
-  const [isWizardOpen, setWizardOpen] = useState(
-    () => !getInitialExplorerWizardCompleted(),
-  );
 
   const {
     buttonConfig,
@@ -226,7 +217,7 @@ function ExplorerVisualization({
   const explorerView = searchParams.get('view') ?? explorerViews[0];
   // State for external commons config and result data
   const [externalConfig, setExternalConfig] = useState(
-    /** @type {ExternalConfig} */(null),
+    /** @type {ExternalConfig} */ (null),
   );
   // State for popup UI passing to child
   const [isLoadingExploreButton, setIsLoadingExploreButton] = useState(false);
@@ -245,18 +236,18 @@ function ExplorerVisualization({
   function updateExplorerView(view) {
     const newSearchParams = new URLSearchParams(searchParams.toString());
     newSearchParams.set('view', view);
-    navigate(`?${decodeURIComponent(newSearchParams.toString())}`, {
-      state: { scrollY: window.scrollY },
-    });
-  }
-
-  function completeExplorerWizard() {
-    markExplorerWizardCompleted();
+    if (newSearchParams.toString() !== searchParams.toString())
+      navigate(`?${decodeURIComponent(newSearchParams.toString())}`, {
+        state: { scrollY: window.scrollY },
+      });
   }
 
   useEffect(() => {
     // Load config on first mount of parent, then pass to child.
     handleFetchExternalConfig();
+
+    if (!getInitialExplorerWizardCompleted())
+      window.dispatchEvent(new Event(OPEN_EXPLORER_WIZARD_EVENT));
 
     if (!explorerViews.includes(explorerView))
       updateExplorerView(explorerViews[0]);
@@ -317,7 +308,7 @@ function ExplorerVisualization({
   // Loop through each resource name and match it with data from ES histogram
   const selectedCommonsCounts = resourceNames.map((name) => {
     // Find the matching bucket from the histogram
-    const bucket = externalResourceData.find(b => b.key === name);
+    const bucket = externalResourceData.find((b) => b.key === name);
 
     // If a bucket is found, use its count; otherwise, set count to 0
     const count = bucket ? bucket.count : 0;
@@ -332,11 +323,15 @@ function ExplorerVisualization({
   return (
     <div className={className}>
       <div className='explorer-visualization__top'>
-        <div className='explorer-visualization__view-group'>
+        <div
+          className='explorer-visualization__view-group'
+          data-tour-explorer-view-group
+        >
           {explorerViews.map((view) => (
             <button
               key={view}
               className={explorerView === view ? 'active' : ''}
+              data-tour-explorer-view={view}
               onClick={() => updateExplorerView(view)}
               type='button'
             >
@@ -347,7 +342,9 @@ function ExplorerVisualization({
         <div className='explorer-visualization__button-group'>
           <button
             className='explorer-visualization__guide-button'
-            onClick={() => setWizardOpen(true)}
+            onClick={() =>
+              window.dispatchEvent(new Event(OPEN_EXPLORER_WIZARD_EVENT))
+            }
             type='button'
           >
             Guide
@@ -406,13 +403,6 @@ function ExplorerVisualization({
           <ReduxExplorerButtonGroup {...buttonGroupProps} />
         </div>
       </div>
-      {isWizardOpen && (
-        <ExplorerWizard
-          isOpen={isWizardOpen}
-          onClose={() => setWizardOpen(false)}
-          onDone={completeExplorerWizard}
-        />
-      )}
       <ExplorerFilterSetWorkspace />
       <ViewContainer
         showIf={explorerView === 'summary view'}
