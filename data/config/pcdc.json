@@ -379,6 +379,9 @@
           "survival": true
         }
       },
+      "heatmapConfig": {
+        "enabled": true
+      },
       "guppyConfig": {
         "dataType": "subject",
         "nodeCountTitle": "Subjects",
@@ -852,6 +855,9 @@
           "risktable": true,
           "survival": true
         }
+      },
+      "heatmapConfig": {
+        "enabled": true
       },
       "guppyConfig": {
         "dataType": "subject",

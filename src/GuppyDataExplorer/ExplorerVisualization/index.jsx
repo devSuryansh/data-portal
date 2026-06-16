@@ -197,13 +197,14 @@ function ExplorerVisualization({
     survivalAnalysisConfig,
     tableConfig,
     tableOneConfig,
+    heatmapConfig,
   } = useAppSelector((state) => state.explorer.config);
 
   const nodeCountTitle =
     guppyConfig.nodeCountTitle || capitalizeFirstLetter(guppyConfig.dataType);
 
   const explorerViews = ['summary view'];
-  explorerViews.push('density heatmap');
+  if (heatmapConfig.enabled) explorerViews.push('density heatmap');
   if (tableConfig.enabled) explorerViews.push('table view');
   if (survivalAnalysisConfig.enabled) explorerViews.push('survival analysis');
   if (tableOneConfig.enabled) explorerViews.push('table one');
@@ -423,16 +424,18 @@ function ExplorerVisualization({
           </div>
         )}
       </ViewContainer>
-      <ViewContainer
-        showIf={explorerView === 'density heatmap'}
-        isLoading={isLoadingRawData}
-      >
-        <ExplorerDensityHeatmap
-          fields={allFields}
-          accessibleCount={accessibleCount}
-          totalCount={totalCount}
-        />
-      </ViewContainer>
+      {heatmapConfig.enabled && (
+        <ViewContainer
+          showIf={explorerView === 'density heatmap'}
+          isLoading={isLoadingRawData}
+        >
+          <ExplorerDensityHeatmap
+            fields={allFields}
+            accessibleCount={accessibleCount}
+            totalCount={totalCount}
+          />
+        </ViewContainer>
+      )}
       {tableConfig.enabled && (
         <ViewContainer
           showIf={explorerView === 'table view'}
