@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import PropTypes from 'prop-types';
 import './TopBarMenu.css';
 
@@ -8,11 +7,18 @@ import './TopBarMenu.css';
  * @param {React.ReactNode | React.ReactNode[]} props.children
  * @param {string} [props.title]
  */
-function TopBarMenu({ buttonIcon, children, title }) {
-  const [showMenu, setShowMenu] = useState(false);
+function TopBarMenu({ 
+  buttonIcon,
+  children,
+  title,
+  isOpen,
+  onToggle,
+  onClose,
+}) {
   function handleMenuBlur(e) {
-    if (showMenu && !e.currentTarget.contains(e.relatedTarget))
-      setShowMenu(false);
+    if (isOpen && !e.currentTarget.contains(e.relatedTarget)) {
+      onClose();
+    }
   }
   function toggleMenu() {
     setShowMenu((s) => !s);
@@ -20,14 +26,14 @@ function TopBarMenu({ buttonIcon, children, title }) {
   return (
     <span className='top-bar-menu' onBlur={handleMenuBlur}>
       <button
-        data-menu-active={showMenu}
-        onClick={toggleMenu}
+        data-menu-active={isOpen}
+        onClick={onToggle}
         title={title}
         type='button'
       >
         {buttonIcon}
       </button>
-      {showMenu && <ul className='top-bar-menu__items'>{children}</ul>}
+      {isOpen && <ul className='top-bar-menu__items'>{children}</ul>}
     </span>
   );
 }
@@ -39,6 +45,9 @@ TopBarMenu.propTypes = {
     PropTypes.arrayOf(PropTypes.node),
   ]),
   title: PropTypes.string,
+  isOpen: PropTypes.bool.isRequired,
+  onToggle: PropTypes.func.isRequired,
+  onClose: PropTypes.func.isRequired,
 };
 
 /** @param {{ children: React.ReactNode }} children */
