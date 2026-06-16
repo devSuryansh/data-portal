@@ -80,7 +80,7 @@ function DataRequestCreate({ isCreatePending }) {
     (state) => state.explorer.savedFilterSets.data,
   );
   const userList =
-    [...admin_user_list].sort((a, b) => {
+    [...(Array.isArray(admin_user_list) ? admin_user_list : [])].sort((a, b) => {
       if (a.username < b.username) {
         return -1;
       }
@@ -88,7 +88,7 @@ function DataRequestCreate({ isCreatePending }) {
         return 1;
       }
       return 0;
-    }) ?? [];
+    });
 
   const navigate = useNavigate();
   const goBack = () => {
