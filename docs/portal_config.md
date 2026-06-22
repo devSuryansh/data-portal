@@ -192,7 +192,8 @@ Below is an example, with inline comments describing what each JSON block config
   "requiredCerts": [],
   // optional; will hide certain parts of the site if needed
   "featureFlags": {},
-  // optional; configures the Exploration guide shown by the Guide button
+  // optional; configures the Exploration guide shown by the Guide button.
+  // The guide is disabled when this block or its steps are missing.
   "explorerWizard": {
     "steps": [
       {
@@ -203,6 +204,11 @@ Below is an example, with inline comments describing what each JSON block config
         // optional; click this selector after route navigation and before
         // measuring the target, useful for filter tabs
         "clickTarget": "[data-tour-filter-tab=\"Disease\"]",
+        // optional; expand collapsed filter sections before highlighting them
+        "expandTargets": [
+          "[data-tour-filter-section=\"Tumor Site\"]",
+          "[data-tour-filter-section=\"Tumor State\"]",
+        ],
         // optional; additional milliseconds to wait before measuring
         "delay": 120,
         // required; text shown in the guide popover

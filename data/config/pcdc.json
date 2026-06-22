@@ -117,10 +117,13 @@
       {
         "route": "/explorer",
         "clickTarget": "[data-tour-filter-tab=\"Disease\"]",
+        "expandTargets": [
+          "[data-tour-filter-section=\"Tumor Site\"]",
+          "[data-tour-filter-section=\"Tumor State\"]"
+        ],
         "target": [
-          "[data-tour-filter-tab=\"Disease\"]",
-          "[data-tour-filter-section=\"Tumor State\"]",
-          "[data-tour-filter-section=\"Tumor Site\"]"
+          "[data-tour-filter-section=\"Tumor Site\"]",
+          "[data-tour-filter-section=\"Tumor State\"]"
         ],
         "content": "Some filters are interdependent. When you select a filter that depends on another filter there will be a warning sign letting you know which one is the related filter. For example Tumor Site could be meaningless without the selection of a tumor state of present or absent."
       },
@@ -136,7 +139,7 @@
       },
       {
         "route": "/explorer",
-        "target": "[data-tour-compose-button]",
+        "target": "[data-tour-filter-set-workspace]",
         "content": "The filterset workspace allows you to do a lot of operations with your filters. You can save them, share them with another user by just copying and pasting the token to a message or an email. You can also compose multiple filters with AND / OR logic building a complex query."
       },
       {

@@ -51,82 +51,9 @@ function getPopoverPosition(rect) {
   };
 }
 
-const defaultSteps = [
-  {
-    route: '/explorer',
-    target: '.g3-filter-group__filter-finder',
-    content:
-      'Use the search box at the top of the Filters panel to quickly find variables of interest. A good starting point is Histology in the Disease tab.',
-  },
-  {
-    route: '/explorer',
-    clickTarget: '[data-tour-filter-tab="Disease"]',
-    target: [
-      '[data-tour-filter-tab="Disease"]',
-      '[data-tour-filter-section="Tumor State"]',
-      '[data-tour-filter-section="Tumor Site"]',
-    ],
-    content:
-      'Some filters are interdependent. When you select a filter that depends on another filter there will be a warning sign letting you know which one is the related filter. For example Tumor Site could be meaningless without the selection of a tumor state of present or absent.',
-  },
-  {
-    route: '/explorer',
-    clickTarget: '[data-tour-filter-tab="Disease"]',
-    target: [
-      '[data-tour-anchor-filter]',
-      '[data-tour-filter-section="Age at Tumor Assessment (days)"]',
-      '[data-tour-filter-section="Age at Tumor Assessment"]',
-    ],
-    content:
-      'For longitudinal data, choose a disease phase with the anchor control, then use filters such as Age at Tumor Assessment to filter within that phase. Any filter selected when the Disease Phase anchor filter is selected will apply to that selected phase only.',
-  },
-  {
-    route: '/explorer',
-    target: '[data-tour-compose-button]',
-    content:
-      'The filterset workspace allows you to do a lot of operations with your filters. You can save them, share them with another user by just copying and pasting the token to a message or an email. You can also compose multiple filters with AND / OR logic building a complex query.',
-  },
-  {
-    route: '/explorer',
-    target: '[data-tour-explore-external-button]',
-    content:
-      'You can explore data from this cohort in other platform like the Imaging Data Common and the Genomic Data Common.',
-  },
-  {
-    route: '/explorer?view=survival%20analysis',
-    target: '[data-tour-explorer-view-group]',
-    content:
-      'You can build a survival curve for any saved filter that contains allowed variables and consortia.',
-  },
-  {
-    route: '/dd?view=table',
-    target: '[data-tour-dictionary-views]',
-    content:
-      'You can visualize the dictionary in either a tabular or a graph view. For each table / node you can download the template TSV or JSON file in which the data can be contributed or received upon an approved project request.',
-  },
-  {
-    route: '/dd?view=table',
-    target: '[data-tour-version-info]',
-    content:
-      'This section shows the different versions of the data dictionary, the data, and the application.',
-  },
-  {
-    target: '[data-tour-profile-menu]',
-    content:
-      'You can update your user information, view your data request status and download data when approved.',
-  },
-  {
-    target: '.top-bar-menu button[title="Documents"]',
-    content:
-      'Need help? Open the info icon for the User Guide and related documents. You can also contact pcdc_help@lists.uchicago.edu.',
-  },
-];
-
 function getConfiguredSteps() {
   const configuredSteps = config.explorerWizard?.steps;
-  return Array.isArray(configuredSteps) && configuredSteps.length > 0
-    ? configuredSteps
-    : defaultSteps;
+  return Array.isArray(configuredSteps) ? configuredSteps : [];
 }
 
 function getRouteWithMergedSearch(route, location) {
@@ -163,7 +90,7 @@ function ExplorerWizard({ isOpen, onClose, onDone }) {
   const steps = useMemo(getConfiguredSteps, []);
   const step = steps[stepIndex];
 
-  const targetSelectors = useMemo(() => step.target, [step]);
+  const targetSelectors = useMemo(() => step?.target ?? [], [step]);
 
   function completeWizard() {
     onDone();
@@ -204,7 +131,7 @@ function ExplorerWizard({ isOpen, onClose, onDone }) {
   }, [isOpen]);
 
   useEffect(() => {
-    if (!isOpen) return undefined;
+    if (!isOpen || step === undefined) return undefined;
 
     setPopover(null);
     if (step.route) {
@@ -214,7 +141,30 @@ function ExplorerWizard({ isOpen, onClose, onDone }) {
     }
 
     const retryTimeouts = [];
+    function expandStepTargets() {
+      let didExpand = false;
+      getElements(step.expandTargets ?? []).forEach((element) => {
+        const toggle = element.matches('[data-tour-filter-toggle]')
+          ? element
+          : element.querySelector('[data-tour-filter-toggle]');
+        if (toggle?.getAttribute('aria-label')?.startsWith('Expand')) {
+          toggle.click();
+          didExpand = true;
+        }
+      });
+      return didExpand;
+    }
+
     function updateLayoutWhenReady(remainingAttempts = 40) {
+      if (expandStepTargets()) {
+        retryTimeouts.push(
+          window.setTimeout(
+            () => updateLayoutWhenReady(remainingAttempts),
+            120,
+          ),
+        );
+        return;
+      }
       const foundTarget = updateLayout(true, remainingAttempts === 0);
       if (!foundTarget && remainingAttempts > 0) {
         retryTimeouts.push(
@@ -230,7 +180,7 @@ function ExplorerWizard({ isOpen, onClose, onDone }) {
       () => {
         if (step.clickTarget) document.querySelector(step.clickTarget)?.click();
         retryTimeouts.push(
-          window.setTimeout(updateLayoutWhenReady, step.delay ?? 120),
+          window.setTimeout(updateLayoutWhenReady, step.delay ?? 300),
         );
       },
       step.route ? 300 : 120,

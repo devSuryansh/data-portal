@@ -489,6 +489,7 @@ function FilterSection({
           state.isExpanded ? 'Collapse' : 'Expand'
         } filter: ${title}`}
         className='g3-filter-section__title-container'
+        data-tour-filter-toggle
         onClick={() => toggleIsExpanded()}
         onKeyPress={(e) => {
           if (e.charCode === 13 || e.charCode === 32) {

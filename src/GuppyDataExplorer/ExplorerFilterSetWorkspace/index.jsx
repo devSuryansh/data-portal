@@ -221,7 +221,10 @@ function ExplorerFilterSetWorkspace() {
   const disableCompose = nonEmptyFilterCount < 2;
 
   return (
-    <div className='explorer-filter-set-workspace'>
+    <div
+      className='explorer-filter-set-workspace'
+      data-tour-filter-set-workspace
+    >
       <header>
         <h2>Filter Set Workspace</h2>
         {/* eslint-disable-next-line no-nested-ternary */}

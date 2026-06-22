@@ -192,6 +192,9 @@ function ExplorerVisualization({
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const [isRequestAccessModalOpen, setRequestAccessModalOpen] = useState(false);
+  const isExplorerWizardEnabled =
+    Array.isArray(config.explorerWizard?.steps) &&
+    config.explorerWizard.steps.length > 0;
 
   const {
     buttonConfig,
@@ -246,7 +249,7 @@ function ExplorerVisualization({
     // Load config on first mount of parent, then pass to child.
     handleFetchExternalConfig();
 
-    if (!getInitialExplorerWizardCompleted())
+    if (isExplorerWizardEnabled && !getInitialExplorerWizardCompleted())
       window.dispatchEvent(new Event(OPEN_EXPLORER_WIZARD_EVENT));
 
     if (!explorerViews.includes(explorerView))
@@ -340,15 +343,17 @@ function ExplorerVisualization({
           ))}
         </div>
         <div className='explorer-visualization__button-group'>
-          <button
-            className='explorer-visualization__guide-button'
-            onClick={() =>
-              window.dispatchEvent(new Event(OPEN_EXPLORER_WIZARD_EVENT))
-            }
-            type='button'
-          >
-            Guide
-          </button>
+          {isExplorerWizardEnabled && (
+            <button
+              className='explorer-visualization__guide-button'
+              onClick={() =>
+                window.dispatchEvent(new Event(OPEN_EXPLORER_WIZARD_EVENT))
+              }
+              type='button'
+            >
+              Guide
+            </button>
+          )}
           {accessibleCount < totalCount && !hideGetAccessButton && (
             <>
               <ExplorerRequestAccessButton
