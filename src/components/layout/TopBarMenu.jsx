@@ -24,7 +24,11 @@ function TopBarMenu({
     setShowMenu((s) => !s);
   }
   return (
-    <span className='top-bar-menu' onBlur={handleMenuBlur}>
+    <span
+      className='top-bar-menu'
+      data-tour-profile-menu={title === 'Profile' ? true : undefined}
+      onBlur={handleMenuBlur}
+    >
       <button
         data-menu-active={isOpen}
         onClick={onToggle}

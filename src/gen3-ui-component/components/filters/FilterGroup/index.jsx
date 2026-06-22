@@ -458,6 +458,7 @@ function FilterGroup({
         {tabs.map((_, index) => (
           <div
             key={index}
+            data-tour-filter-tab={filterTabs[index].title}
             className={'g3-filter-group__tab'.concat(
               tabIndex === index ? ' g3-filter-group__tab--selected' : '',
             )}
@@ -547,6 +548,7 @@ function FilterGroup({
           return (
             <FilterSection
               key={section.title}
+              dataTourTitle={section.title}
               sectionTitle={section.title}
               disabledTooltipMessage={disabledTooltipMessage}
               excluded={excludedStatus[tabIndex][index]}
