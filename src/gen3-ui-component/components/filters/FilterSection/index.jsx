@@ -32,6 +32,7 @@ function getNumValuesSelected(filterStatus) {
  * @typedef {Object} FilterSectionProps
  * @property {string} [disabledTooltipMessage]
  * @property {string} [sectionTitle]
+ * @property {string} [dataTourTitle]
  * @property {boolean} [excluded]
  * @property {boolean} [expanded]
  * @property {OptionFilterStatus | RangeFilterStatus} [filterStatus]
@@ -79,6 +80,7 @@ const defaultOptions = [];
 /** @param {FilterSectionProps} props */
 function FilterSection({
   disabledTooltipMessage = '',
+  dataTourTitle = '',
   sectionTitle = '',
   excluded = false,
   expanded = true,
@@ -487,6 +489,7 @@ function FilterSection({
           state.isExpanded ? 'Collapse' : 'Expand'
         } filter: ${title}`}
         className='g3-filter-section__title-container'
+        data-tour-filter-toggle
         onClick={() => toggleIsExpanded()}
         onKeyPress={(e) => {
           if (e.charCode === 13 || e.charCode === 32) {
@@ -592,7 +595,7 @@ function FilterSection({
   );
 
   return options.length ? (
-    <div className='g3-filter-section'>
+    <div className='g3-filter-section' data-tour-filter-section={dataTourTitle}>
       {tooltip ? (
         <Tooltip
           arrowContent={<div className='rc-tooltip-arrow-inner' />}
@@ -665,6 +668,7 @@ FilterSection.propTypes = {
   tooltip: PropTypes.string,
   lockedTooltipMessage: PropTypes.string,
   disabledTooltipMessage: PropTypes.string,
+  dataTourTitle: PropTypes.string,
 };
 
 export default FilterSection;
