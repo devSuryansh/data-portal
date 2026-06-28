@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import SummaryChartGroup from '../../gen3-ui-component/components/charts/SummaryChartGroup';
@@ -17,7 +17,11 @@ import ExplorerTable from '../ExplorerTable';
 import ExplorerSurvivalAnalysis from '../ExplorerSurvivalAnalysis';
 import ExplorerTableOne from '../ExplorerTableOne';
 import ReduxExplorerButtonGroup from '../ExplorerButtonGroup/ReduxExplorerButtonGroup';
-import ExplorerWizard, { OPEN_EXPLORER_WIZARD_EVENT } from '../ExplorerWizard';
+import {
+  hasSeenExplorerWizard,
+  isExplorerWizardEnabled,
+  OPEN_EXPLORER_WIZARD_EVENT,
+} from '../ExplorerWizard';
 import './ExplorerVisualization.css';
 import { FILTER_TYPE } from '../ExplorerFilterSetWorkspace/utils';
 
@@ -145,13 +149,6 @@ function openLink(link) {
   }
 }
 
-function getInitialExplorerWizardCompleted() {
-  return (
-    window.localStorage.getItem(ExplorerWizard.COMPLETION_STORAGE_KEY) ===
-    'true'
-  );
-}
-
 /**
  * @typedef {Object} ExplorerVisualizationProps
  * @property {number} accessibleCount
@@ -192,9 +189,9 @@ function ExplorerVisualization({
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const [isRequestAccessModalOpen, setRequestAccessModalOpen] = useState(false);
-  const isExplorerWizardEnabled =
-    Array.isArray(config.explorerWizard?.steps) &&
-    config.explorerWizard.steps.length > 0;
+  const hasRequestedExplorerWizard = useRef(false);
+  const isExplorerWizardConfigured = isExplorerWizardEnabled();
+  const user = useAppSelector((state) => state.user);
 
   const {
     buttonConfig,
@@ -249,12 +246,22 @@ function ExplorerVisualization({
     // Load config on first mount of parent, then pass to child.
     handleFetchExternalConfig();
 
-    if (isExplorerWizardEnabled && !getInitialExplorerWizardCompleted())
-      window.dispatchEvent(new Event(OPEN_EXPLORER_WIZARD_EVENT));
-
     if (!explorerViews.includes(explorerView))
       updateExplorerView(explorerViews[0]);
   }, []);
+
+  useEffect(() => {
+    if (
+      !isExplorerWizardConfigured ||
+      !user.fetched_user ||
+      hasRequestedExplorerWizard.current ||
+      hasSeenExplorerWizard(user)
+    )
+      return;
+
+    hasRequestedExplorerWizard.current = true;
+    window.dispatchEvent(new Event(OPEN_EXPLORER_WIZARD_EVENT));
+  }, [isExplorerWizardConfigured, user]);
 
   const chartData = getChartData({
     aggsChartData,
@@ -343,7 +350,7 @@ function ExplorerVisualization({
           ))}
         </div>
         <div className='explorer-visualization__button-group'>
-          {isExplorerWizardEnabled && (
+          {isExplorerWizardConfigured && (
             <button
               className='explorer-visualization__guide-button'
               onClick={() =>
